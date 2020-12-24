@@ -1,3 +1,4 @@
+import 'package:communioncc/widgets/bottom_navigation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -37,6 +38,9 @@ class MyApp extends StatelessWidget {
               ),
             ],
           ),
+
+          // Setting up Bottom Navigation
+          bottomNavigationBar: BottomNavigation(),
         ),
       ),
     );
