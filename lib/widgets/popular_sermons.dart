@@ -27,7 +27,7 @@ class _PopularSermonsState extends State<PopularSermons> {
                   fontSize: 20.0,
                   fontWeight: FontWeight.w700,
                   color: mPinkColour,
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Montserrat',
                 ),
               ),
               subtitle: Text(
@@ -35,8 +35,22 @@ class _PopularSermonsState extends State<PopularSermons> {
                 style: TextStyle(
                   fontWeight: FontWeight.w300,
                   color: Colors.grey[500],
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Montserrat',
                 ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(right: 10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    child: Icon(
+                      Icons.play_circle_fill_sharp,
+                      color: mPinkColour,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
@@ -49,18 +63,26 @@ class _PopularSermonsState extends State<PopularSermons> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20.0),
-      height: 240.0,
+      height: 330.0,
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
           mostSermon(
-              "https://placeimg.com/600/420/any", "Heading 1", "Sub Heading 1"),
+              "https://res.cloudinary.com/communioncc/image/upload/c_fit,h_1500,w_1500/v1/cc_files/media_clipart/5fe3e001176c4_1608769537.jpg",
+              "Rejoicing Regardless",
+              "A believer must always be in alignment..."),
           mostSermon(
-              "https://placeimg.com/600/420/any", "Heading 2", "Sub Heading 2"),
+              "https://res.cloudinary.com/communioncc/image/upload/v1603818080/cc_files/media_clipart/5f985260683a2_1603818080.jpg",
+              "Special Online Service",
+              "A believer must always be in alignment..."),
           mostSermon(
-              "https://placeimg.com/600/420/any", "Heading 3", "Sub Heading 3"),
+              "https://res.cloudinary.com/communioncc/image/upload/v1603817696/cc_files/media_clipart/5f9850e088a97_1603817696.jpg",
+              "Anniversary",
+              "A believer must always be in alignment..."),
           mostSermon(
-              "https://placeimg.com/600/420/any", "Heading 4", "Sub Heading 4"),
+              "https://res.cloudinary.com/communioncc/image/upload/v1603817450/cc_files/media_clipart/5f984fe9d22cb_1603817449.jpg",
+              "Blessed And Fruitful",
+              "A believer must always be in alignment..."),
         ],
       ),
     );

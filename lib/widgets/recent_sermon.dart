@@ -14,7 +14,7 @@ class _RecentSermonsState extends State<RecentSermons> {
         children: [
           Container(
             width: 160.0,
-            height: 90.0,
+            height: 160.0,
             child: Card(
               semanticContainer: true,
               clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -36,7 +36,7 @@ class _RecentSermonsState extends State<RecentSermons> {
                   title,
                   style: TextStyle(
                     fontSize: 16.0,
-                    fontFamily: 'Roboto',
+                    fontFamily: 'Montserrat',
                     fontWeight: FontWeight.w700,
                     color: mPinkColour,
                   ),
@@ -45,7 +45,7 @@ class _RecentSermonsState extends State<RecentSermons> {
                   preacher,
                   style: TextStyle(
                     fontSize: 14.0,
-                    fontFamily: 'Roboto',
+                    fontFamily: 'Montserrat',
                     fontWeight: FontWeight.w300,
                   ),
                 ),
@@ -63,29 +63,37 @@ class _RecentSermonsState extends State<RecentSermons> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          newSermons("https://placeimg.com/600/420/any",
-              "The Foundation For Favour", "Holly Furtick"),
+          newSermons(
+              "https://res.cloudinary.com/communioncc/image/upload/v1608769537/cc_files/media_clipart/5fe3e001176c4_1608769537.png",
+              "Special Thanksgiving Service",
+              "Pst. Tope Awofisayo"),
           Divider(
             color: Colors.grey[400],
             height: 10.0,
             thickness: 1.0,
           ),
-          newSermons("https://placeimg.com/600/420/any", "Favor Over Fear",
-              "Steven Furtick"),
+          newSermons(
+              "https://res.cloudinary.com/communioncc/image/upload/v1607118374/cc_files/media_clipart/5fcaae265ffd7_1607118374.jpg",
+              "My Church And I",
+              "Pst. Tope Awofisayo"),
           Divider(
             color: Colors.grey[400],
             height: 10.0,
             thickness: 1.0,
           ),
-          newSermons("https://placeimg.com/600/420/any", "Finish With Favor",
-              "Steven Furtick"),
+          newSermons(
+              "https://res.cloudinary.com/communioncc/image/upload/v1607117380/cc_files/media_clipart/5fcaaa439a778_1607117379.jpg",
+              "Seizing The Moment",
+              "Pst. Tope Awofisayo"),
           Divider(
             color: Colors.grey[400],
             height: 10.0,
             thickness: 1.0,
           ),
-          newSermons("https://placeimg.com/600/420/any", "I Woke Up Like This",
-              "Levi Lusko"),
+          newSermons(
+              "https://res.cloudinary.com/communioncc/image/upload/v1599588930/cc_files/media_clipart/5f57ca416e770_1599588929.jpg",
+              "I Woke Up Like This",
+              "Pst. Tope Awofisayo"),
           Divider(
             color: Colors.grey[400],
             height: 10.0,

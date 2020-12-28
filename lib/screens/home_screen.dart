@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       'Sermons',
                       style: TextStyle(
                         fontSize: 18.0,
-                        fontFamily: 'Roboto',
+                        fontFamily: 'Montserrat',
                       ),
                     ),
                   ),
@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       'Broadcasts',
                       style: TextStyle(
                         fontSize: 18.0,
-                        fontFamily: 'Roboto',
+                        fontFamily: 'Montserrat',
                       ),
                     ),
                   ),
@@ -67,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: EdgeInsets.only(left: 10.0, right: 5.0),
               child: TextField(
                 style: TextStyle(
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Montserrat',
                   fontSize: 17.0,
                 ),
                 decoration: InputDecoration(
@@ -90,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
             // Start Home Card Section
             Container(
-              height: 200.0,
+              // height: 350.0,
               width: MediaQuery.of(context).size.width - 100.0,
               child: Card(
                 semanticContainer: true,
@@ -99,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: Image.network(
-                  'https://placeimg.com/600/420/any',
+                  'https://res.cloudinary.com/communioncc/image/upload/v1603818080/cc_files/media_clipart/5f985260683a2_1603818080.jpg',
                   fit: BoxFit.fill,
                 ),
                 elevation: 5,
@@ -157,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text(
                     "VIEW MORE SERMONS",
                     style: TextStyle(
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Montserrat',
                       fontWeight: FontWeight.w800,
                       fontSize: 18.0,
                       letterSpacing: 2.0,
