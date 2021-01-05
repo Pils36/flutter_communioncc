@@ -4,6 +4,10 @@ import 'package:communioncc/widgets/bottom_navigation.dart';
 import 'package:communioncc/widgets/popular_sermons.dart';
 import 'package:communioncc/widgets/recent_sermon.dart';
 import 'package:communioncc/widgets/series.dart';
+import 'package:communioncc/screens/discover_screen.dart';
+import 'package:communioncc/screens/giving_screen.dart';
+import 'package:communioncc/screens/location_screen.dart';
+import 'package:communioncc/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,6 +16,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final tabs = [
+    HomePage(),
+    DiscoverScreen(),
+    GivingScreen(),
+    LocationScreen(),
+    ProfileScreen(),
+  ];
+
+  get _selectedindex => 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +35,20 @@ class _HomeScreenState extends State<HomeScreen> {
       // Set navigation bar
       bottomNavigationBar: BottomNavigation(),
 
+      body: tabs[_selectedindex],
+    );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
       body: Container(
         child: ListView(
           physics: ClampingScrollPhysics(),
