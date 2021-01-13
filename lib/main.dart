@@ -1,4 +1,4 @@
-import 'package:communioncc/screens/home_screen.dart';
+import 'package:communioncc/widgets/bottom_navigation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -8,6 +8,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: HomeScreen());
+    return MaterialApp(
+        debugShowCheckedModeBanner: false, home: BottomNavigation());
   }
 }

@@ -1,4 +1,3 @@
-import 'package:communioncc/constants/color_constant.dart';
 import 'package:flutter/material.dart';
 
 class DiscoverScreen extends StatefulWidget {

@@ -17,9 +17,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       // Setting up background color
       backgroundColor: mBackgroundColour,
-
-      // Set navigation bar
-      bottomNavigationBar: BottomNavigation(),
       body: Container(
         child: ListView(
           physics: ClampingScrollPhysics(),
