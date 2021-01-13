@@ -1,6 +1,5 @@
 import 'package:communioncc/constants/color_constant.dart';
 import 'package:communioncc/constants/style_constant.dart';
-import 'package:communioncc/widgets/bottom_navigation.dart';
 import 'package:communioncc/widgets/popular_sermons.dart';
 import 'package:communioncc/widgets/recent_sermon.dart';
 import 'package:communioncc/widgets/series.dart';
