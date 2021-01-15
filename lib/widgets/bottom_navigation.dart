@@ -21,15 +21,16 @@ class _BottomNavigationState extends State<BottomNavigation> {
     ProfileScreen()
   ];
 
-  void _onPageChanged(int index) {}
-
   int _selectedindex = 0;
 
-  void _onItemTapped(int index) {
-    _pageController.jumpToPage(index);
+  void _onPageChanged(int index) {
     setState(() {
       _selectedindex = index;
     });
+  }
+
+  void _onItemTapped(int _selectedindex) {
+    _pageController.jumpToPage(_selectedindex);
   }
 
   @override

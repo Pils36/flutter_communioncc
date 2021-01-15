@@ -10,7 +10,7 @@ class _PopularSermonsState extends State<PopularSermons> {
   Container mostSermon(String imageVal, String heading, String subheading) {
     return Container(
       padding: EdgeInsets.only(left: 10.0),
-      width: 250.0,
+      width: 220.0,
       child: Card(
         semanticContainer: true,
         clipBehavior: Clip.antiAliasWithSaveLayer,

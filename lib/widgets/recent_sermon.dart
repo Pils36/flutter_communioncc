@@ -40,6 +40,7 @@ class _RecentSermonsState extends State<RecentSermons> {
                     fontWeight: FontWeight.w700,
                     color: mPinkColour,
                   ),
+                  overflow: TextOverflow.ellipsis,
                 ),
                 Text(
                   preacher,
@@ -48,6 +49,7 @@ class _RecentSermonsState extends State<RecentSermons> {
                     fontFamily: 'Montserrat',
                     fontWeight: FontWeight.w300,
                   ),
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
@@ -65,7 +67,7 @@ class _RecentSermonsState extends State<RecentSermons> {
         children: [
           newSermons(
               "https://res.cloudinary.com/communioncc/image/upload/v1608769537/cc_files/media_clipart/5fe3e001176c4_1608769537.png",
-              "Special Thanksgiving Service",
+              "Thanksgiving Service",
               "Pst. Tope Awofisayo"),
           Divider(
             color: Colors.grey[400],

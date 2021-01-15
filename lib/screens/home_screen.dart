@@ -141,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
             Container(
               padding: EdgeInsets.all(10),
-              margin: EdgeInsets.only(left: 10.0, right: 5.0, bottom: 30.0),
+              margin: EdgeInsets.only(left: 30.0, right: 40.0, bottom: 30.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0),
                 color: Colors.grey[200],
@@ -153,8 +153,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     "VIEW MORE SERMONS",
                     style: TextStyle(
                       fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.w800,
-                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14.0,
                       letterSpacing: 2.0,
                     ),
                   ),

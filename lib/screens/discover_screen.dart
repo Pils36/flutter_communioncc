@@ -10,7 +10,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: Text("Discover"),
+        child: Text("Discover Jesus"),
       ),
     );
   }
