@@ -53,7 +53,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       fit: BoxFit.fill,
                     ),
                     ListTile(
-                      minVerticalPadding: 15.0,
+                      // minVerticalPadding: 15.0,
                       title: Text(
                         "New Here?",
                         style: TextStyle(
@@ -105,7 +105,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       fit: BoxFit.fill,
                     ),
                     ListTile(
-                      minVerticalPadding: 15.0,
+                      // minVerticalPadding: 15.0,
                       title: Text(
                         "Communion Outreach",
                         style: TextStyle(
@@ -157,7 +157,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       fit: BoxFit.fill,
                     ),
                     ListTile(
-                      minVerticalPadding: 15.0,
+                      // minVerticalPadding: 15.0,
                       title: Text(
                         "Core Interest Group",
                         style: TextStyle(
@@ -209,7 +209,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       fit: BoxFit.fill,
                     ),
                     ListTile(
-                      minVerticalPadding: 15.0,
+                      // minVerticalPadding: 15.0,
                       title: Text(
                         "Family Connect",
                         style: TextStyle(
@@ -261,7 +261,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       fit: BoxFit.fill,
                     ),
                     ListTile(
-                      minVerticalPadding: 15.0,
+                      // minVerticalPadding: 15.0,
                       title: Text(
                         "Communion Choir",
                         style: TextStyle(
@@ -313,7 +313,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       fit: BoxFit.fill,
                     ),
                     ListTile(
-                      minVerticalPadding: 15.0,
+                      // minVerticalPadding: 15.0,
                       title: Text(
                         "Need more info?",
                         style: TextStyle(
@@ -324,7 +324,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                         ),
                       ),
                       subtitle: Text(
-                        "\n Dont't see what you are looking for? Have a question? We're hapy to help.",
+                        "\n Don't see what you are looking for? Have a question? We're hapy to help.",
                         style: TextStyle(
                           fontSize: 17.0,
                           fontWeight: FontWeight.w200,
@@ -375,6 +375,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
+                      color: Colors.grey[200],
                       padding: EdgeInsets.all(15.0),
                       child: Wrap(
                         children: [
@@ -390,7 +391,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                               Text(
                                 " Facebook",
                                 style: TextStyle(
-                                  fontSize: 27.0,
+                                  fontSize: 22.0,
                                   fontWeight: FontWeight.w900,
                                   fontFamily: 'Montserrat',
                                 ),
@@ -415,7 +416,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                               Text(
                                 " communioncc",
                                 style: TextStyle(
-                                  fontSize: 27.0,
+                                  fontSize: 18.0,
                                   fontWeight: FontWeight.w900,
                                   fontFamily: 'Montserrat',
                                 ),
