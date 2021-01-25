@@ -15,7 +15,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
           physics: ClampingScrollPhysics(),
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 20.0, left: 20.0),
+              padding: EdgeInsets.only(top: 20.0, left: 10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -53,6 +53,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       fit: BoxFit.fill,
                     ),
                     ListTile(
+                      contentPadding: EdgeInsets.only(
+                        bottom: 10.0,
+                        left: 10.0,
+                        right: 10.0,
+                      ),
                       // minVerticalPadding: 15.0,
                       title: Text(
                         "New Here?",
@@ -70,7 +75,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                           fontWeight: FontWeight.w200,
                           fontFamily: 'Montserrat',
                         ),
-                        textAlign: TextAlign.justify,
+                        textAlign: TextAlign.left,
                       ),
                     ),
                   ],
@@ -106,6 +111,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     ),
                     ListTile(
                       // minVerticalPadding: 15.0,
+                      contentPadding: EdgeInsets.only(
+                        bottom: 10.0,
+                        left: 10.0,
+                        right: 10.0,
+                      ),
                       title: Text(
                         "Communion Outreach",
                         style: TextStyle(
@@ -122,7 +132,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                           fontWeight: FontWeight.w200,
                           fontFamily: 'Montserrat',
                         ),
-                        textAlign: TextAlign.justify,
+                        textAlign: TextAlign.left,
                       ),
                     ),
                   ],
@@ -158,6 +168,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     ),
                     ListTile(
                       // minVerticalPadding: 15.0,
+                      contentPadding: EdgeInsets.only(
+                        bottom: 10.0,
+                        left: 10.0,
+                        right: 10.0,
+                      ),
                       title: Text(
                         "Core Interest Group",
                         style: TextStyle(
@@ -174,7 +189,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                           fontWeight: FontWeight.w200,
                           fontFamily: 'Montserrat',
                         ),
-                        textAlign: TextAlign.justify,
+                        textAlign: TextAlign.left,
                       ),
                     ),
                   ],
@@ -210,6 +225,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     ),
                     ListTile(
                       // minVerticalPadding: 15.0,
+                      contentPadding: EdgeInsets.only(
+                        bottom: 10.0,
+                        left: 10.0,
+                        right: 10.0,
+                      ),
                       title: Text(
                         "Family Connect",
                         style: TextStyle(
@@ -226,7 +246,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                           fontWeight: FontWeight.w200,
                           fontFamily: 'Montserrat',
                         ),
-                        textAlign: TextAlign.justify,
+                        textAlign: TextAlign.left,
                       ),
                     ),
                   ],
@@ -262,6 +282,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     ),
                     ListTile(
                       // minVerticalPadding: 15.0,
+                      contentPadding: EdgeInsets.only(
+                        bottom: 10.0,
+                        left: 10.0,
+                        right: 10.0,
+                      ),
                       title: Text(
                         "Communion Choir",
                         style: TextStyle(
@@ -278,7 +303,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                           fontWeight: FontWeight.w200,
                           fontFamily: 'Montserrat',
                         ),
-                        textAlign: TextAlign.justify,
+                        textAlign: TextAlign.left,
                       ),
                     ),
                   ],
@@ -314,6 +339,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     ),
                     ListTile(
                       // minVerticalPadding: 15.0,
+                      contentPadding: EdgeInsets.only(
+                        bottom: 10.0,
+                        left: 10.0,
+                        right: 10.0,
+                      ),
                       title: Text(
                         "Need more info?",
                         style: TextStyle(
@@ -330,7 +360,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                           fontWeight: FontWeight.w200,
                           fontFamily: 'Montserrat',
                         ),
-                        textAlign: TextAlign.justify,
+                        textAlign: TextAlign.left,
                       ),
                     ),
                   ],
@@ -411,6 +441,31 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                               CircleAvatar(
                                 backgroundColor: Colors.transparent,
                                 backgroundImage: NetworkImage(
+                                    "https://communioncc.org/img/cc_image/past_tope3.jpeg"),
+                              ),
+                              Text(
+                                " topeawofisayo",
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.w900,
+                                  fontFamily: 'Montserrat',
+                                ),
+                                textAlign: TextAlign.center,
+                                textWidthBasis: TextWidthBasis.longestLine,
+                              ),
+                            ],
+                          ),
+                          Divider(
+                            height: 20.0,
+                            color: Colors.grey,
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.transparent,
+                                backgroundImage: NetworkImage(
                                     "https://communioncc.org/img/cc_image/ccc_logo.png"),
                               ),
                               Text(
@@ -424,6 +479,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                 textWidthBasis: TextWidthBasis.longestLine,
                               ),
                             ],
+                          ),
+                          SizedBox(
+                            height: 20.0,
                           ),
                         ],
                       ),
