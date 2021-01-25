@@ -53,7 +53,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       fit: BoxFit.fill,
                     ),
                     ListTile(
-                      minVerticalPadding: 15.0,
+                      // minVerticalPadding: 15.0,
                       title: Text(
                         "New Here?",
                         style: TextStyle(
@@ -105,7 +105,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       fit: BoxFit.fill,
                     ),
                     ListTile(
-                      minVerticalPadding: 15.0,
+                      // minVerticalPadding: 15.0,
                       title: Text(
                         "Communion Outreach",
                         style: TextStyle(
@@ -157,7 +157,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       fit: BoxFit.fill,
                     ),
                     ListTile(
-                      minVerticalPadding: 15.0,
+                      // minVerticalPadding: 15.0,
                       title: Text(
                         "Core Interest Group",
                         style: TextStyle(
@@ -209,7 +209,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       fit: BoxFit.fill,
                     ),
                     ListTile(
-                      minVerticalPadding: 15.0,
+                      // minVerticalPadding: 15.0,
                       title: Text(
                         "Family Connect",
                         style: TextStyle(
@@ -261,7 +261,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       fit: BoxFit.fill,
                     ),
                     ListTile(
-                      minVerticalPadding: 15.0,
+                      // minVerticalPadding: 15.0,
                       title: Text(
                         "Communion Choir",
                         style: TextStyle(
@@ -313,7 +313,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       fit: BoxFit.fill,
                     ),
                     ListTile(
-                      minVerticalPadding: 15.0,
+                      // minVerticalPadding: 15.0,
                       title: Text(
                         "Need more info?",
                         style: TextStyle(
