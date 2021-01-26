@@ -7,6 +7,52 @@ class DiscoverScreen extends StatefulWidget {
 }
 
 class _DiscoverScreenState extends State<DiscoverScreen> {
+// Social media module
+  Container socialMedia(String imageVal, String title) {
+    return Container(
+      color: Colors.grey[200],
+      padding: EdgeInsets.only(left: 15.0, top: 10.0, right: 15.0),
+      child: Wrap(
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CircleAvatar(
+                backgroundColor: Colors.transparent,
+                backgroundImage: NetworkImage(imageVal),
+              ),
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 22.0,
+                  fontWeight: FontWeight.w900,
+                  fontFamily: 'Montserrat',
+                ),
+                textAlign: TextAlign.center,
+                textWidthBasis: TextWidthBasis.longestLine,
+              ),
+              // Column(
+              //   crossAxisAlignment: CrossAxisAlignment.end,
+              //   children: [
+              //     Image.network(
+              //       "https://img.icons8.com/ios/24/000000/circled-right-2.png",
+              //       height: 20.0,
+              //       width: 20.0,
+              //     )
+              //   ],
+              // ),
+            ],
+          ),
+          Divider(
+            height: 20.0,
+            color: Colors.grey,
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +61,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
           physics: ClampingScrollPhysics(),
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 20.0, left: 20.0),
+              padding: EdgeInsets.only(top: 20.0, left: 10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -53,6 +99,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       fit: BoxFit.fill,
                     ),
                     ListTile(
+                      contentPadding: EdgeInsets.only(
+                        bottom: 10.0,
+                        left: 10.0,
+                        right: 10.0,
+                      ),
                       // minVerticalPadding: 15.0,
                       title: Text(
                         "New Here?",
@@ -64,13 +115,13 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                         ),
                       ),
                       subtitle: Text(
-                        "\n Learn more about our church and how you can get involved",
+                        "\nLearn more about our church and how you can get involved",
                         style: TextStyle(
                           fontSize: 17.0,
                           fontWeight: FontWeight.w200,
                           fontFamily: 'Montserrat',
                         ),
-                        textAlign: TextAlign.justify,
+                        textAlign: TextAlign.left,
                       ),
                     ),
                   ],
@@ -106,6 +157,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     ),
                     ListTile(
                       // minVerticalPadding: 15.0,
+                      contentPadding: EdgeInsets.only(
+                        bottom: 10.0,
+                        left: 10.0,
+                        right: 10.0,
+                      ),
                       title: Text(
                         "Communion Outreach",
                         style: TextStyle(
@@ -116,13 +172,13 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                         ),
                       ),
                       subtitle: Text(
-                        "\n Communion Outreach is about compassion, unity, selflessness, and service. We serve with more than 300 organizations. We belive in connecting with the community abd would be honored if you would join us.",
+                        "\nCommunion Outreach is about compassion, unity, selflessness, and service. We serve with more than 300 organizations. We belive in connecting with the community abd would be honored if you would join us.",
                         style: TextStyle(
                           fontSize: 17.0,
                           fontWeight: FontWeight.w200,
                           fontFamily: 'Montserrat',
                         ),
-                        textAlign: TextAlign.justify,
+                        textAlign: TextAlign.left,
                       ),
                     ),
                   ],
@@ -158,6 +214,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     ),
                     ListTile(
                       // minVerticalPadding: 15.0,
+                      contentPadding: EdgeInsets.only(
+                        bottom: 10.0,
+                        left: 10.0,
+                        right: 10.0,
+                      ),
                       title: Text(
                         "Core Interest Group",
                         style: TextStyle(
@@ -168,13 +229,13 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                         ),
                       ),
                       subtitle: Text(
-                        "\n Learn more about our core interest group. Career wise, Business oriented and Ministry works.",
+                        "\nLearn more about our core interest group. Career wise, Business oriented and Ministry works.",
                         style: TextStyle(
                           fontSize: 17.0,
                           fontWeight: FontWeight.w200,
                           fontFamily: 'Montserrat',
                         ),
-                        textAlign: TextAlign.justify,
+                        textAlign: TextAlign.left,
                       ),
                     ),
                   ],
@@ -210,6 +271,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     ),
                     ListTile(
                       // minVerticalPadding: 15.0,
+                      contentPadding: EdgeInsets.only(
+                        bottom: 10.0,
+                        left: 10.0,
+                        right: 10.0,
+                      ),
                       title: Text(
                         "Family Connect",
                         style: TextStyle(
@@ -220,13 +286,13 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                         ),
                       ),
                       subtitle: Text(
-                        "\n No matter where you come from, there is a family connect for you. Join a family connect and experience real relationships that will grow your faith.",
+                        "\nNo matter where you come from, there is a family connect for you. Join a family connect and experience real relationships that will grow your faith.",
                         style: TextStyle(
                           fontSize: 17.0,
                           fontWeight: FontWeight.w200,
                           fontFamily: 'Montserrat',
                         ),
-                        textAlign: TextAlign.justify,
+                        textAlign: TextAlign.left,
                       ),
                     ),
                   ],
@@ -262,6 +328,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     ),
                     ListTile(
                       // minVerticalPadding: 15.0,
+                      contentPadding: EdgeInsets.only(
+                        bottom: 10.0,
+                        left: 10.0,
+                        right: 10.0,
+                      ),
                       title: Text(
                         "Communion Choir",
                         style: TextStyle(
@@ -272,13 +343,13 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                         ),
                       ),
                       subtitle: Text(
-                        "\n Open your heart and see the evidence of God's presence all around you as you listen to original music written, produced and performed by C4",
+                        "\nOpen your heart and see the evidence of God's presence all around you as you listen to original music written, produced and performed by C4",
                         style: TextStyle(
                           fontSize: 17.0,
                           fontWeight: FontWeight.w200,
                           fontFamily: 'Montserrat',
                         ),
-                        textAlign: TextAlign.justify,
+                        textAlign: TextAlign.left,
                       ),
                     ),
                   ],
@@ -314,6 +385,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     ),
                     ListTile(
                       // minVerticalPadding: 15.0,
+                      contentPadding: EdgeInsets.only(
+                        bottom: 10.0,
+                        left: 10.0,
+                        right: 10.0,
+                      ),
                       title: Text(
                         "Need more info?",
                         style: TextStyle(
@@ -324,13 +400,13 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                         ),
                       ),
                       subtitle: Text(
-                        "\n Dont't see what you are looking for? Have a question? We're hapy to help.",
+                        "\nDon't see what you are looking for? Have a question? We're hapy to help.",
                         style: TextStyle(
                           fontSize: 17.0,
                           fontWeight: FontWeight.w200,
                           fontFamily: 'Montserrat',
                         ),
-                        textAlign: TextAlign.justify,
+                        textAlign: TextAlign.left,
                       ),
                     ),
                   ],
@@ -365,6 +441,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               ),
             ),
             Container(
+              padding: EdgeInsets.only(bottom: 20.0, right: 10.0, left: 10.0),
               child: Card(
                 semanticContainer: true,
                 clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -374,58 +451,29 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Container(
-                      padding: EdgeInsets.all(15.0),
-                      child: Wrap(
-                        children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              CircleAvatar(
-                                backgroundColor: Colors.transparent,
-                                backgroundImage: NetworkImage(
-                                    "https://img.icons8.com/color/48/000000/facebook.png"),
-                              ),
-                              Text(
-                                " Facebook",
-                                style: TextStyle(
-                                  fontSize: 27.0,
-                                  fontWeight: FontWeight.w900,
-                                  fontFamily: 'Montserrat',
-                                ),
-                                textAlign: TextAlign.center,
-                                textWidthBasis: TextWidthBasis.longestLine,
-                              ),
-                            ],
-                          ),
-                          Divider(
-                            height: 20.0,
-                            color: Colors.grey,
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              CircleAvatar(
-                                backgroundColor: Colors.transparent,
-                                backgroundImage: NetworkImage(
-                                    "https://communioncc.org/img/cc_image/ccc_logo.png"),
-                              ),
-                              Text(
-                                " communioncc",
-                                style: TextStyle(
-                                  fontSize: 27.0,
-                                  fontWeight: FontWeight.w900,
-                                  fontFamily: 'Montserrat',
-                                ),
-                                textAlign: TextAlign.center,
-                                textWidthBasis: TextWidthBasis.longestLine,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                    socialMedia(
+                      "https://img.icons8.com/color/48/000000/facebook.png",
+                      " Facebook",
+                    ),
+                    socialMedia(
+                      "https://scontent-los2-1.xx.fbcdn.net/v/t1.0-9/128804031_10224341145620347_2364892448218258573_n.jpg?_nc_cat=105&ccb=2&_nc_sid=09cbfe&_nc_ohc=-nB2uWyocaAAX-5y9EI&_nc_ht=scontent-los2-1.xx&oh=f20b89c70e4bf0324a906f8a34e7a26a&oe=6033003F",
+                      " Tope Awofisayo",
+                    ),
+                    socialMedia(
+                      "https://communioncc.org/img/cc_image/ccc_logo.png",
+                      " communioncc",
+                    ),
+                    socialMedia(
+                      "https://img.icons8.com/fluent/48/000000/twitter.png",
+                      " Twitter",
+                    ),
+                    socialMedia(
+                      "https://pbs.twimg.com/profile_images/997080325137281024/DLw3jWU9_400x400.jpg",
+                      " communioncc_",
+                    ),
+                    socialMedia(
+                      "https://pbs.twimg.com/profile_images/938800144014704640/F3PlyC8O_400x400.jpg",
+                      " topeawofisayo",
                     ),
                   ],
                 ),
