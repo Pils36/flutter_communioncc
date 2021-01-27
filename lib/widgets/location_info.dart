@@ -61,17 +61,15 @@ class _ChurchCentresState extends State<ChurchCentres> {
                   ),
                 ],
               ),
-              Positioned(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(miles),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      size: 15,
-                    )
-                  ],
-                ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(miles),
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    size: 15,
+                  )
+                ],
               ),
             ],
           ),
