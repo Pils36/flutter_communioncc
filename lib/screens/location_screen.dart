@@ -1,3 +1,4 @@
+import 'package:communioncc/widgets/location_info.dart';
 import 'package:flutter/material.dart';
 
 class LocationScreen extends StatelessWidget {
@@ -41,6 +42,9 @@ class LocationScreen extends StatelessWidget {
               ],
             ),
           ),
+
+        ChurchCentres(),
+
         ],
       ),
     );
