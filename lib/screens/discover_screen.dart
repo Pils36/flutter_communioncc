@@ -89,19 +89,17 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   ),
                 ],
               ),
-              Positioned(
-                child: Row(
-                  verticalDirection: VerticalDirection.up,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.network(
-                      urlVal,
-                      width: 25.0,
-                      height: 25.0,
-                      fit: BoxFit.contain,
-                    ),
-                  ],
-                ),
+              Row(
+                verticalDirection: VerticalDirection.up,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.network(
+                    urlVal,
+                    width: 25.0,
+                    height: 25.0,
+                    fit: BoxFit.contain,
+                  ),
+                ],
               ),
             ],
           ),
@@ -210,7 +208,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               ),
             ),
             discoverInfo(
-              "https://i.ytimg.com/vi/D8J6pHHGqxU/maxresdefault.jpg",
+              "https://images.pexels.com/photos/2014773/pexels-photo-2014773.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
               "Communion Choir",
               "\nOpen your heart and see the evidence of God's presence all around you as you listen to original music written, produced and performed by C4.",
             ),
@@ -226,7 +224,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               ),
             ),
             discoverInfo(
-              "https://www.macworld.co.uk/cmsdata/features/3689410/change_user_name_mac_thumb1200_4-3.jpg",
+              "https://images.pexels.com/photos/7101/wood-coffee-iphone-notebook.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
               "Need more info?",
               "\nDon't see what you are looking for? Have a question? We're hapy to help.",
             ),

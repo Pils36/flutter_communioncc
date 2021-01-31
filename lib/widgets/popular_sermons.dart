@@ -77,7 +77,7 @@ class _PopularSermonsState extends State<PopularSermons> {
               "A believer must always be in alignment..."),
           mostSermon(
               "https://res.cloudinary.com/communioncc/image/upload/v1603817696/cc_files/media_clipart/5f9850e088a97_1603817696.jpg",
-              "Anniversary",
+              "Sunday Anniversary",
               "A believer must always be in alignment..."),
           mostSermon(
               "https://res.cloudinary.com/communioncc/image/upload/v1603817450/cc_files/media_clipart/5f984fe9d22cb_1603817449.jpg",

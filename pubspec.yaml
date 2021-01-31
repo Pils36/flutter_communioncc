@@ -16,6 +16,9 @@ dependencies:
   google_fonts: ^1.0.0
   flutter_swiper: ^1.1.6
   font_awesome_flutter: '>= 4.7.0'
+  dio: ^3.0.9
+  connectivity: ^0.4.8+2
+  http: ^0.12.2
 
 
 
