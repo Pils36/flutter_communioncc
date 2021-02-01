@@ -7,16 +7,24 @@ class HttpService {
   final String postUrl =
       "https://communioncc.org/api/v1/message/popularsermons";
 
+  List<Post> posts = List<Post>();
+
   Future<List<Post>> getPosts() async {
     Response res = await get(postUrl);
 
     if (res.statusCode == 200) {
-      List<dynamic> body = jsonDecode(res.body);
+      var message = jsonDecode(res.body);
 
-      List<Post> posts =
-          body.map((dynamic item) => Post.fromJson(item)).toList();
+      var messages = List<Post>();
 
-      return posts;
+      for (var mymessages in message) {
+        messages.add(Post.fromJson(mymessages));
+      }
+
+      // List<Post> posts =
+      //     messages.map((dynamic item) => Post.fromJson(item)).toList();
+
+      return messages;
     } else {
       throw "Can't get messages";
     }
