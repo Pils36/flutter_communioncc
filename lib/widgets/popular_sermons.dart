@@ -1,6 +1,9 @@
-import 'package:communioncc/clients/http_services.dart';
+import 'dart:convert';
+
+import 'package:communioncc/clients/messages.dart';
 import 'package:communioncc/constants/color_constant.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class PopularSermons extends StatefulWidget {
   @override
@@ -8,8 +11,29 @@ class PopularSermons extends StatefulWidget {
 }
 
 class _PopularSermonsState extends State<PopularSermons> {
-  Future fetchPopularSermon() async {
-    HttpService();
+  List<Messages> _messages = List<Messages>();
+
+  Future<List<Messages>> fetchPopularSermon() async {
+    var url = "https://communioncc.org/api/v1/message/popularsermons";
+
+    Map<String, String> headers = {
+      'Accept': 'application/json',
+      'Authorization':
+          'Bearer base64:HgMO6FDHGziGl01OuLH9mh7CeP095shB6uuDUUClhks='
+    };
+
+    var response = await http.get(url, headers: headers);
+
+    var messages = List<Messages>();
+
+    if (response.statusCode == 200) {
+      var messagesJson = json.decode(response.body)['data'];
+
+      for (var messageJson in messagesJson) {
+        messages.add(Messages.fromJson(messageJson));
+      }
+    }
+    return messages;
   }
 
   Container mostSermon(String imageUrl, String subject, String description) {
@@ -64,19 +88,43 @@ class _PopularSermonsState extends State<PopularSermons> {
     );
   }
 
+  String removeAllHtmlTags(String htmlText) {
+    RegExp exp = RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
+
+    return htmlText.replaceAll(exp, '');
+  }
+
+  @override
+  void initState() {
+    fetchPopularSermon().then((value) {
+      setState(() {
+        _messages.addAll(value);
+      });
+    });
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20.0),
       height: 330.0,
       child: ListView.builder(
+        scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return mostSermon(
-              "https://res.cloudinary.com/communioncc/image/upload/c_fit,h_1500,w_1500/v1/cc_files/media_clipart/5fe3e001176c4_1608769537.jpg",
-              "Rejoicing Regardless",
-              "A believer must always be in alignments...");
+          return GestureDetector(
+            onTap: () {
+              // Perform Operation to next page for message listen
+              print(_messages[index].id);
+            },
+            child: mostSermon(
+                _messages[index].imageUrl,
+                _messages[index].subject,
+                removeAllHtmlTags(_messages[index].description)),
+          );
         },
-        itemCount: 4,
+        itemCount: _messages.length,
         shrinkWrap: true,
       ),
     );
