@@ -1,4 +1,10 @@
+import 'dart:convert';
+
+import 'package:communioncc/clients/api_clients.dart';
+import 'package:communioncc/models/series.dart';
 import 'package:flutter/material.dart';
+
+import 'package:http/http.dart' as http;
 
 class Series extends StatefulWidget {
   @override
@@ -6,6 +12,39 @@ class Series extends StatefulWidget {
 }
 
 class _SeriesState extends State<Series> {
+// Get series message here and populate
+  List<Serie> _messages = List<Serie>();
+
+  Future<List<Serie>> seriesSermon() async {
+    var url = "https://communioncc.org/api/v1/message/series";
+
+    ApiClients();
+
+    var response = await http.get(url, headers: ApiClients().headers);
+
+    var messages = List<Serie>();
+
+    if (response.statusCode == 200) {
+      var messagesJson = json.decode(response.body)['data'];
+
+      for (var messageJson in messagesJson) {
+        messages.add(Serie.fromJson(messageJson));
+      }
+    }
+    return messages;
+  }
+
+  @override
+  void initState() {
+    seriesSermon().then((value) {
+      setState(() {
+        _messages.addAll(value);
+      });
+    });
+
+    super.initState();
+  }
+
   Container mostSermon(String imageVal) {
     return Container(
       width: 250.0,
@@ -16,7 +55,18 @@ class _SeriesState extends State<Series> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        child: Image.network(imageVal, fit: BoxFit.fill),
+        child: FutureBuilder(
+          future: seriesSermon(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.hasData) {
+              return Image.network(
+                imageVal,
+                fit: BoxFit.fill,
+              );
+            }
+            return Center(child: CircularProgressIndicator());
+          },
+        ),
       ),
     );
   }
@@ -26,18 +76,23 @@ class _SeriesState extends State<Series> {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20.0),
       height: 200.0,
-      child: ListView(
+      child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        children: [
-          mostSermon(
-              "https://res.cloudinary.com/communioncc/image/upload/v1600801640/cc_files/media_clipart/5f6a4b67a3bec_1600801639.jpg"),
-          mostSermon(
-              "https://res.cloudinary.com/communioncc/image/upload/v1608284702/cc_files/media_clipart/5fdc7a1e28c3a_1608284702.jpg"),
-          mostSermon(
-              "https://res.cloudinary.com/communioncc/image/upload/v1608285265/cc_files/media_clipart/5fdc7c518d2de_1608285265.jpg"),
-          mostSermon(
-              "https://res.cloudinary.com/communioncc/image/upload/v1608285702/cc_files/media_clipart/5fdc7e0600fe4_1608285702.jpg"),
-        ],
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              print(_messages[index]);
+            },
+            child: Hero(
+              tag: _messages[index].subject,
+              child: mostSermon(
+                _messages[index].imageUrl,
+              ),
+            ),
+          );
+        },
+        itemCount: _messages.length,
+        shrinkWrap: true,
       ),
     );
   }
