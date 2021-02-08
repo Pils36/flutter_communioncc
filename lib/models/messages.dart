@@ -3,12 +3,14 @@ class Messages {
   String imageUrl;
   String subject;
   String description;
+  String createdAt;
 
   Messages(
     this.id,
     this.imageUrl,
     this.subject,
     this.description,
+    this.createdAt,
   );
 
   Messages.fromJson(Map<String, dynamic> json) {
@@ -16,5 +18,6 @@ class Messages {
     imageUrl = json['imageUrl'];
     subject = json['subject'];
     description = json['description'];
+    createdAt = json['createdAt'];
   }
 }

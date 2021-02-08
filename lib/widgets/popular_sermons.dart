@@ -1,9 +1,10 @@
-import 'dart:convert';
-
-import 'package:communioncc/clients/messages.dart';
-import 'package:communioncc/constants/color_constant.dart';
+import 'package:communioncc/clients/api_clients.dart';
+import 'package:communioncc/models/messages.dart';
+import 'package:communioncc/screens/message_destination.dart';
 import 'package:flutter/material.dart';
+
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class PopularSermons extends StatefulWidget {
   @override
@@ -16,13 +17,9 @@ class _PopularSermonsState extends State<PopularSermons> {
   Future<List<Messages>> fetchPopularSermon() async {
     var url = "https://communioncc.org/api/v1/message/popularsermons";
 
-    Map<String, String> headers = {
-      'Accept': 'application/json',
-      'Authorization':
-          'Bearer base64:HgMO6FDHGziGl01OuLH9mh7CeP095shB6uuDUUClhks='
-    };
+    ApiClients();
 
-    var response = await http.get(url, headers: headers);
+    var response = await http.get(url, headers: ApiClients().headers);
 
     var messages = List<Messages>();
 
@@ -39,7 +36,7 @@ class _PopularSermonsState extends State<PopularSermons> {
   Container mostSermon(String imageUrl, String subject, String description) {
     return Container(
       padding: EdgeInsets.only(left: 10.0),
-      width: 220.0,
+      width: 240.0,
       child: Card(
         semanticContainer: true,
         clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -48,16 +45,34 @@ class _PopularSermonsState extends State<PopularSermons> {
         ),
         child: Wrap(
           children: [
-            Image.network(imageUrl, fit: BoxFit.fill),
+            FutureBuilder(
+              future: fetchPopularSermon(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData) {
+                  return Image.network(
+                    imageUrl,
+                    fit: BoxFit.fill,
+                    width: 240,
+                    height: 200,
+                  );
+                }
+
+                return Padding(
+                  padding: const EdgeInsets.only(top: 100.0),
+                  child: Center(child: CircularProgressIndicator()),
+                );
+              },
+            ),
             ListTile(
               title: Text(
                 subject,
                 style: TextStyle(
                   fontSize: 20.0,
                   fontWeight: FontWeight.w700,
-                  color: mPinkColour,
+                  color: Colors.red.shade800,
                   fontFamily: 'Montserrat',
                 ),
+                overflow: TextOverflow.ellipsis,
               ),
               subtitle: Text(
                 description,
@@ -66,6 +81,7 @@ class _PopularSermonsState extends State<PopularSermons> {
                   color: Colors.grey[500],
                   fontFamily: 'Montserrat',
                 ),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
             Container(
@@ -75,8 +91,8 @@ class _PopularSermonsState extends State<PopularSermons> {
                 children: [
                   Container(
                     child: Icon(
-                      Icons.play_circle_fill_sharp,
-                      color: mPinkColour,
+                      Icons.mic,
+                      color: Colors.orange.shade900,
                     ),
                   ),
                 ],
@@ -109,19 +125,26 @@ class _PopularSermonsState extends State<PopularSermons> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20.0),
-      height: 330.0,
+      height: 315.0,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return GestureDetector(
-            onTap: () {
-              // Perform Operation to next page for message listen
-              print(_messages[index].id);
-            },
-            child: mostSermon(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (_) => MessageDestination(
+                        info: _messages[index],
+                      )),
+            ),
+            child: Hero(
+              tag: _messages[index].id,
+              child: mostSermon(
                 _messages[index].imageUrl,
                 _messages[index].subject,
-                removeAllHtmlTags(_messages[index].description)),
+                removeAllHtmlTags(_messages[index].description),
+              ),
+            ),
           );
         },
         itemCount: _messages.length,

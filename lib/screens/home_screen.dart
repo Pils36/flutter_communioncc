@@ -4,6 +4,7 @@ import 'package:communioncc/widgets/popular_sermons.dart';
 import 'package:communioncc/widgets/recent_sermon.dart';
 import 'package:communioncc/widgets/series.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -13,6 +14,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.black, //or set color with: Color(0xFF0000FF)
+    ));
+
     return Scaffold(
       // Setting up background color
       backgroundColor: mBackgroundColour,

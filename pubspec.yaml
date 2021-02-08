@@ -20,6 +20,8 @@ dependencies:
   connectivity: ^0.4.8+2
   http: ^0.12.2
   html: ^0.14.0+4
+  date_format: ^1.0.9
+  intl: ^0.16.1
 
 
 
