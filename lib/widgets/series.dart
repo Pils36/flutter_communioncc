@@ -34,17 +34,6 @@ class _SeriesState extends State<Series> {
     return messages;
   }
 
-  @override
-  void initState() {
-    seriesSermon().then((value) {
-      setState(() {
-        _messages.addAll(value);
-      });
-    });
-
-    super.initState();
-  }
-
   Container mostSermon(String imageVal) {
     return Container(
       width: 250.0,
@@ -69,6 +58,19 @@ class _SeriesState extends State<Series> {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    seriesSermon().then((value) {
+      if (mounted) {
+        setState(() {
+          _messages.addAll(value);
+        });
+      }
+    });
+
+    super.initState();
   }
 
   @override

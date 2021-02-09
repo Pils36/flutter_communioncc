@@ -98,7 +98,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
           ],
           currentIndex: _selectedindex,
           onTap: _onItemTapped,
-          selectedItemColor: mPinkColour,
+          selectedItemColor: mOrangeColour,
           unselectedItemColor: mSubtitleColour,
           selectedFontSize: 15.0,
           showUnselectedLabels: true,

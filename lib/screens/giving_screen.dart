@@ -44,32 +44,11 @@ class GivingScreen extends StatelessWidget {
               ),
               child: Wrap(
                 children: [
-                  Image.network(
-                    "https://images.pexels.com/photos/5638706/pexels-photo-5638706.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+                  Image.asset(
+                    "images/giving.jpg",
                     fit: BoxFit.cover,
                     width: double.infinity,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          Container(
-            alignment: Alignment.center,
-            child: Card(
-              semanticContainer: true,
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: Wrap(
-                children: [
-                  Image.network(
-                    "https://images.pexels.com/photos/6591166/pexels-photo-6591166.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-                    fit: BoxFit.cover,
-                    width: double.infinity,
+                    height: MediaQuery.of(context).size.width,
                   ),
                 ],
               ),

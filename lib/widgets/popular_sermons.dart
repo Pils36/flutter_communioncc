@@ -113,9 +113,11 @@ class _PopularSermonsState extends State<PopularSermons> {
   @override
   void initState() {
     fetchPopularSermon().then((value) {
-      setState(() {
-        _messages.addAll(value);
-      });
+      if (mounted) {
+        setState(() {
+          _messages.addAll(value);
+        });
+      }
     });
 
     super.initState();
