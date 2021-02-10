@@ -33,47 +33,48 @@ class _MessageDestinationState extends State<MessageDestination> {
         title: Text("${widget.info.subject}"),
         backgroundColor: Colors.black,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30.0),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black26,
-                        offset: Offset(0.0, 2.0),
-                        blurRadius: 6.0,
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0.0, 2.0),
+                          blurRadius: 6.0,
+                        ),
+                      ]),
+                  child: Hero(
+                    tag: widget.info.id,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(30.0),
+                        bottomRight: Radius.circular(30.0),
                       ),
-                    ]),
-                child: Hero(
-                  tag: widget.info.id,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(30.0),
-                      bottomRight: Radius.circular(30.0),
-                    ),
-                    child: FittedBox(
-                      fit: BoxFit.cover,
-                      child: Image(
-                        image: NetworkImage(widget.info.imageUrl),
-                        fit: BoxFit.contain,
+                      child: FittedBox(
+                        fit: BoxFit.cover,
+                        child: Image(
+                          image: NetworkImage(widget.info.imageUrl),
+                          fit: BoxFit.contain,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          Expanded(
-            child: Padding(
+              ],
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            Padding(
               padding: const EdgeInsets.only(left: 10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,7 +93,8 @@ class _MessageDestinationState extends State<MessageDestination> {
                     height: 5.0,
                   ),
                   Text(
-                    removeAllHtmlTags(widget.info.description),
+                    removeAllHtmlTags(widget.info.description)
+                        .replaceAll('&nbsp;', ' '),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Montserrat',
@@ -197,8 +199,8 @@ class _MessageDestinationState extends State<MessageDestination> {
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

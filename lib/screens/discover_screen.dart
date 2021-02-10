@@ -60,32 +60,29 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
 // Social media module
   Container socialMedia(String imageVal, String title, String urlVal) {
     return Container(
-      // color: Colors.grey[200],
+      width: 300,
       padding: EdgeInsets.only(left: 15.0, top: 10.0, right: 15.0),
-      child: Wrap(
+      child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Wrap(
+              Row(
                 children: [
-                  Row(
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: Colors.transparent,
-                        backgroundImage: AssetImage(imageVal),
-                      ),
-                      Text(
-                        title,
-                        style: TextStyle(
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.w900,
-                          fontFamily: 'Montserrat',
-                        ),
-                        textAlign: TextAlign.center,
-                        textWidthBasis: TextWidthBasis.longestLine,
-                      ),
-                    ],
+                  CircleAvatar(
+                    backgroundColor: Colors.transparent,
+                    backgroundImage: AssetImage(imageVal),
+                  ),
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w900,
+                      fontFamily: 'Montserrat',
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    textWidthBasis: TextWidthBasis.parent,
                   ),
                 ],
               ),
@@ -258,8 +255,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 ),
               ),
               Container(
+                color: Colors.grey.shade100,
+                height: 250,
                 padding: EdgeInsets.only(bottom: 20.0, right: 10.0, left: 10.0),
-                child: Wrap(
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
                   children: [
                     Card(
                       semanticContainer: true,
@@ -268,7 +268,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           socialMedia(
                             "assets/facebook.png",
@@ -282,9 +281,20 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                           ),
                           socialMedia(
                             "assets/ccc_logo.png",
-                            " communioncc",
+                            " Communion Christian C..",
                             "circled-right.png",
                           ),
+                        ],
+                      ),
+                    ),
+                    Card(
+                      semanticContainer: true,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Column(
+                        children: [
                           socialMedia(
                             "assets/twitter.png",
                             " Twitter",
@@ -292,12 +302,80 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                           ),
                           socialMedia(
                             "assets/cc_black.jpg",
-                            " communioncc_",
+                            " @communioncc_",
                             "circled-right.png",
                           ),
                           socialMedia(
                             "assets/ptops2.jpg",
+                            " @topeawofisayo",
+                            "circled-right.png",
+                          ),
+                        ],
+                      ),
+                    ),
+                    Card(
+                      semanticContainer: true,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Column(
+                        children: [
+                          socialMedia(
+                            "assets/mixlr.png",
+                            " Mixlr",
+                            "",
+                          ),
+                          socialMedia(
+                            "assets/ccc_logo.png",
+                            " communioncc",
+                            "circled-right.png",
+                          ),
+                          socialMedia(
+                            "assets/past_tope3.jpeg",
                             " topeawofisayo",
+                            "circled-right.png",
+                          ),
+                        ],
+                      ),
+                    ),
+                    Card(
+                      semanticContainer: true,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Column(
+                        children: [
+                          socialMedia(
+                            "assets/instagram.png",
+                            " Instagram",
+                            "",
+                          ),
+                          socialMedia(
+                            "assets/ccc_logo.png",
+                            " @communioncc_",
+                            "circled-right.png",
+                          ),
+                        ],
+                      ),
+                    ),
+                    Card(
+                      semanticContainer: true,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Column(
+                        children: [
+                          socialMedia(
+                            "assets/youtube.png",
+                            " Youtube",
+                            "",
+                          ),
+                          socialMedia(
+                            "assets/ccc_logo.png",
+                            " Communion Christian C..",
                             "circled-right.png",
                           ),
                         ],

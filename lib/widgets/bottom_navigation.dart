@@ -47,7 +47,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
           color: mFillColour,
           boxShadow: [
             BoxShadow(
-              color: Colors.pinkAccent.withOpacity(0.3),
+              color: Colors.orange.withOpacity(0.3),
               spreadRadius: 2.0,
               blurRadius: 15.0,
               offset: Offset(0, 5),
