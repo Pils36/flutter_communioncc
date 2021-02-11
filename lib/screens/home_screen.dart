@@ -11,9 +11,11 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen>
+    with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.black, //or set color with: Color(0xFF0000FF)
     ));
@@ -66,8 +68,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   // Start Search Field
                   Container(
-                    margin: EdgeInsets.only(left: 10.0, right: 5.0),
-                    padding: EdgeInsets.only(left: 10.0, right: 5.0),
+                    margin: EdgeInsets.only(left: 10.0, right: 10.0),
+                    padding: EdgeInsets.only(left: 10.0, right: 10.0),
                     child: TextField(
                       style: TextStyle(
                         fontFamily: 'Montserrat',
@@ -185,4 +187,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

@@ -83,7 +83,7 @@ class _SeriesState extends State<Series> {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              print(_messages[index]);
+              print(_messages[index].id);
             },
             child: Hero(
               tag: _messages[index].subject,

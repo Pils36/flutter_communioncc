@@ -6,7 +6,8 @@ class DiscoverScreen extends StatefulWidget {
   _DiscoverScreenState createState() => _DiscoverScreenState();
 }
 
-class _DiscoverScreenState extends State<DiscoverScreen> {
+class _DiscoverScreenState extends State<DiscoverScreen>
+    with AutomaticKeepAliveClientMixin {
 // Discover Information Module
   Container discoverInfo(String imageVal, String heading, String subHeading) {
     return Container(
@@ -111,6 +112,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -390,4 +392,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

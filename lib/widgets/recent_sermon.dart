@@ -1,5 +1,12 @@
+import 'dart:convert';
+
+import 'package:communioncc/clients/api_clients.dart';
 import 'package:communioncc/constants/color_constant.dart';
+import 'package:communioncc/models/messages.dart';
+import 'package:communioncc/screens/message_destination.dart';
 import 'package:flutter/material.dart';
+
+import 'package:http/http.dart' as http;
 
 class RecentSermons extends StatefulWidget {
   @override
@@ -7,6 +14,27 @@ class RecentSermons extends StatefulWidget {
 }
 
 class _RecentSermonsState extends State<RecentSermons> {
+  List<Messages> _messages = List<Messages>();
+
+  Future<List<Messages>> recentSermons() async {
+    var url = "https://communioncc.org/api/v1/message/recentsermons";
+
+    ApiClients();
+
+    var response = await http.get(url, headers: ApiClients().headers);
+
+    var messages = List<Messages>();
+
+    if (response.statusCode == 200) {
+      var messagesJson = json.decode(response.body)['data'];
+
+      for (var messageJson in messagesJson) {
+        messages.add(Messages.fromJson(messageJson));
+      }
+    }
+    return messages;
+  }
+
   Container newSermons(String imageVal, String title, String preacher) {
     return Container(
       padding: EdgeInsets.only(left: 10.0),
@@ -21,14 +49,24 @@ class _RecentSermonsState extends State<RecentSermons> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
               ),
-              child: Image.network(
-                imageVal,
-                fit: BoxFit.fill,
+              child: FutureBuilder(
+                future: recentSermons(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasData) {
+                    return Image.network(
+                      imageVal,
+                      fit: BoxFit.fill,
+                    );
+                  }
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
               ),
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(left: 5.0),
+          Expanded(
+            flex: 1,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -60,48 +98,53 @@ class _RecentSermonsState extends State<RecentSermons> {
   }
 
   @override
+  void initState() {
+    recentSermons().then((value) {
+      if (mounted) {
+        setState(() {
+          _messages.addAll(value);
+        });
+      }
+    });
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          newSermons(
-              "https://res.cloudinary.com/communioncc/image/upload/v1608769537/cc_files/media_clipart/5fe3e001176c4_1608769537.png",
-              "Thanksgiving Service",
-              "Pst. Tope Awofisayo"),
-          Divider(
-            color: Colors.grey[400],
-            height: 10.0,
-            thickness: 1.0,
-          ),
-          newSermons(
-              "https://res.cloudinary.com/communioncc/image/upload/v1607118374/cc_files/media_clipart/5fcaae265ffd7_1607118374.jpg",
-              "My Church And I",
-              "Pst. Tope Awofisayo"),
-          Divider(
-            color: Colors.grey[400],
-            height: 10.0,
-            thickness: 1.0,
-          ),
-          newSermons(
-              "https://res.cloudinary.com/communioncc/image/upload/v1607117380/cc_files/media_clipart/5fcaaa439a778_1607117379.jpg",
-              "Seizing The Moment",
-              "Pst. Tope Awofisayo"),
-          Divider(
-            color: Colors.grey[400],
-            height: 10.0,
-            thickness: 1.0,
-          ),
-          newSermons(
-              "https://res.cloudinary.com/communioncc/image/upload/v1599588930/cc_files/media_clipart/5f57ca416e770_1599588929.jpg",
-              "I Woke Up Like This",
-              "Pst. Tope Awofisayo"),
-          Divider(
-            color: Colors.grey[400],
-            height: 10.0,
-            thickness: 1.0,
-          ),
-        ],
+      height: 400,
+      child: ListView.builder(
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (_) => MessageDestination(
+                        info: _messages[index],
+                      )),
+            ),
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  newSermons(
+                    _messages[index].imageUrl,
+                    _messages[index].subject,
+                    "Pst. Tope Awofisayo",
+                  ),
+                  Divider(
+                    color: Colors.grey[400],
+                    height: 10.0,
+                    thickness: 1.0,
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+        itemCount: _messages.length,
+        shrinkWrap: true,
       ),
     );
   }
