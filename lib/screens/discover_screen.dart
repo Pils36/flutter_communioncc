@@ -1,5 +1,6 @@
 import 'package:communioncc/constants/color_constant.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DiscoverScreen extends StatefulWidget {
   @override
@@ -59,7 +60,8 @@ class _DiscoverScreenState extends State<DiscoverScreen>
   }
 
 // Social media module
-  Container socialMedia(String imageVal, String title, String urlVal) {
+  Container socialMedia(
+      String imageVal, String title, String urlVal, String link) {
     return Container(
       width: 300,
       padding: EdgeInsets.only(left: 15.0, top: 10.0, right: 15.0),
@@ -91,11 +93,16 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                 verticalDirection: VerticalDirection.up,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    urlVal != '' ? "images/$urlVal" : "images/white.png",
-                    width: 25.0,
-                    height: 25.0,
-                    fit: BoxFit.contain,
+                  GestureDetector(
+                    onTap: () {
+                      _launchURL(link);
+                    },
+                    child: Image.asset(
+                      urlVal != '' ? "images/$urlVal" : "images/white.png",
+                      width: 25.0,
+                      height: 25.0,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ],
               ),
@@ -275,16 +282,19 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                             "assets/facebook.png",
                             " Facebook",
                             "",
+                            "",
                           ),
                           socialMedia(
                             "assets/ptops.jpg",
                             " Tope Awofisayo",
                             "circled-right.png",
+                            "https://www.facebook.com/tope.awofisayo",
                           ),
                           socialMedia(
                             "assets/ccc_logo.png",
                             " Communion Christian C..",
                             "circled-right.png",
+                            "https://www.facebook.com/communioncc",
                           ),
                         ],
                       ),
@@ -301,16 +311,19 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                             "assets/twitter.png",
                             " Twitter",
                             "",
+                            "",
                           ),
                           socialMedia(
                             "assets/cc_black.jpg",
                             " @communioncc_",
                             "circled-right.png",
+                            "https://twitter.com/CommunionCC_",
                           ),
                           socialMedia(
                             "assets/ptops2.jpg",
                             " @topeawofisayo",
                             "circled-right.png",
+                            "https://twitter.com/topeawofisayo",
                           ),
                         ],
                       ),
@@ -327,16 +340,19 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                             "assets/mixlr.png",
                             " Mixlr",
                             "",
+                            "",
                           ),
                           socialMedia(
                             "assets/ccc_logo.png",
                             " communioncc",
                             "circled-right.png",
+                            "https://mixlr.com/communioncc",
                           ),
                           socialMedia(
                             "assets/past_tope3.jpeg",
                             " topeawofisayo",
                             "circled-right.png",
+                            "https://mixlr.com/topeawofisayo",
                           ),
                         ],
                       ),
@@ -353,11 +369,13 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                             "assets/instagram.png",
                             " Instagram",
                             "",
+                            "",
                           ),
                           socialMedia(
                             "assets/ccc_logo.png",
                             " @communioncc_",
                             "circled-right.png",
+                            "https://www.instagram.com/communioncc_/",
                           ),
                         ],
                       ),
@@ -374,11 +392,13 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                             "assets/youtube.png",
                             " Youtube",
                             "",
+                            "",
                           ),
                           socialMedia(
                             "assets/ccc_logo.png",
                             " Communion Christian C..",
                             "circled-right.png",
+                            "https://www.youtube.com/channel/UC65SBFUV1CmwEEe5S4iYp6Q",
                           ),
                         ],
                       ),
@@ -396,4 +416,13 @@ class _DiscoverScreenState extends State<DiscoverScreen>
   @override
   // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
+}
+
+_launchURL(link) async {
+  var url = link;
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
 }
