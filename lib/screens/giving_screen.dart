@@ -59,7 +59,7 @@ class GivingScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Text(
-                  "You can also give directly. Click on the paystack icon below.",
+                  "You can also give directly. Click on the secure payment box below.",
                   style: TextStyle(
                     fontFamily: "Montserrat",
                     fontSize: 18,
