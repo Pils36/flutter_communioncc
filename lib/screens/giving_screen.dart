@@ -34,25 +34,56 @@ class GivingScreen extends StatelessWidget {
           SizedBox(
             height: 20.0,
           ),
-          Container(
-            alignment: Alignment.center,
-            child: Card(
-              semanticContainer: true,
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
+          Column(
+            children: [
+              Card(
+                semanticContainer: true,
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: Wrap(
+                  children: [
+                    Image.asset(
+                      "images/giving.jpg",
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: MediaQuery.of(context).size.width,
+                    ),
+                  ],
+                ),
               ),
-              child: Wrap(
-                children: [
-                  Image.asset(
-                    "images/giving.jpg",
+              SizedBox(
+                height: 10.0,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text(
+                  "You can also give directly. Click on the paystack icon below.",
+                  style: TextStyle(
+                    fontFamily: "Montserrat",
+                    fontSize: 18,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              GestureDetector(
+                onTap: () {
+                  print("I want to pay via paystack");
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Image.asset(
+                    "assets/paystack_card.png",
                     fit: BoxFit.cover,
                     width: double.infinity,
-                    height: MediaQuery.of(context).size.width,
                   ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
         ],
       ),
