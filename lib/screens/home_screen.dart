@@ -103,8 +103,8 @@ class _HomeScreenState extends State<HomeScreen>
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      child: Image.network(
-                        'https://res.cloudinary.com/communioncc/image/upload/v1603818080/cc_files/media_clipart/5f985260683a2_1603818080.jpg',
+                      child: Image.asset(
+                        'assets/pp.jpg',
                         fit: BoxFit.fill,
                       ),
                       elevation: 5,

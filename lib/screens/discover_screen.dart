@@ -67,50 +67,50 @@ class _DiscoverScreenState extends State<DiscoverScreen>
       padding: EdgeInsets.only(left: 15.0, top: 10.0, right: 15.0),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.transparent,
-                    backgroundImage: AssetImage(imageVal),
-                  ),
-                  Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.w900,
-                      fontFamily: 'Montserrat',
+          GestureDetector(
+            onTap: () {
+              _launchURL(link);
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      backgroundImage: AssetImage(imageVal),
                     ),
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.center,
-                    textWidthBasis: TextWidthBasis.parent,
-                  ),
-                ],
-              ),
-              Row(
-                verticalDirection: VerticalDirection.up,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      _launchURL(link);
-                    },
-                    child: Image.asset(
+                    Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w900,
+                        fontFamily: 'Montserrat',
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center,
+                      textWidthBasis: TextWidthBasis.parent,
+                    ),
+                  ],
+                ),
+                Row(
+                  verticalDirection: VerticalDirection.up,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(
                       urlVal != '' ? "images/$urlVal" : "images/white.png",
                       width: 25.0,
                       height: 25.0,
                       fit: BoxFit.contain,
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
           Divider(
-            height: 20.0,
-            color: Colors.grey,
+            height: 15.0,
+            color: Colors.grey.shade400,
           ),
         ],
       ),

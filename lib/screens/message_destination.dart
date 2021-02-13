@@ -1,3 +1,6 @@
+import 'package:communioncc/components/sermon_modal.dart';
+import 'package:communioncc/components/share_button.dart';
+import 'package:communioncc/components/subscribe_redirect.dart';
 import 'package:communioncc/models/messages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -118,80 +121,16 @@ class _MessageDestinationState extends State<MessageDestination> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Column(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.all(5.0),
-                              decoration: BoxDecoration(
-                                color: Colors.black12,
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              child: Icon(
-                                Icons.notifications,
-                                size: 30.0,
-                                color: Colors.black,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10.0,
-                            ),
-                            Text("Subscribe",
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontWeight: FontWeight.w600,
-                                  fontFamily: 'Montserrat',
-                                )),
-                          ],
+                        SubscribeRedirect(),
+                        Theme(
+                          data: Theme.of(context)
+                              .copyWith(canvasColor: Colors.transparent),
+                          child: SermonModal(
+                            info: widget.info,
+                          ),
                         ),
-                        Column(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.all(5.0),
-                              decoration: BoxDecoration(
-                                color: Colors.black12,
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              child: Icon(
-                                Icons.play_arrow,
-                                size: 30.0,
-                                color: Colors.black,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10.0,
-                            ),
-                            Text("Listen",
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontWeight: FontWeight.w600,
-                                  fontFamily: 'Montserrat',
-                                )),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.all(5.0),
-                              decoration: BoxDecoration(
-                                color: Colors.black12,
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              child: Icon(
-                                Icons.reply_all_outlined,
-                                size: 30.0,
-                                color: Colors.black,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10.0,
-                            ),
-                            Text("Share",
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontWeight: FontWeight.w600,
-                                  fontFamily: 'Montserrat',
-                                )),
-                          ],
+                        ShareButton(
+                          info: widget.info,
                         ),
                       ],
                     ),
