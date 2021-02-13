@@ -30,11 +30,19 @@ class _MessageDestinationState extends State<MessageDestination> {
 
     DateTime now = DateTime.parse(datetime);
 
+    void _onBackPressed() {
+      Navigator.of(context).pop(true);
+    }
+
     return Scaffold(
       // extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text("${widget.info.subject}"),
         backgroundColor: Colors.black,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: _onBackPressed,
+        ),
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,

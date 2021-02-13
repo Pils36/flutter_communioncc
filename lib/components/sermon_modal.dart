@@ -170,6 +170,8 @@ class _SermonModalState extends State<SermonModal> {
 
   Widget slider() {
     return Slider.adaptive(
+      activeColor: Colors.orange.shade600,
+      inactiveColor: Colors.grey.shade300,
       min: 0.0,
       value: position.inSeconds.toDouble(),
       max: duration.inSeconds.toDouble(),
