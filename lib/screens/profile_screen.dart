@@ -41,8 +41,8 @@ class ProfileScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Image.network(
-                          "https://img.icons8.com/cotton/64/000000/settings.png",
+                        Image.asset(
+                          "assets/settings.png",
                           width: 30.0,
                           height: 30.0,
                         )
@@ -66,9 +66,14 @@ class ProfileScreen extends StatelessWidget {
               ),
               child: Wrap(
                 children: [
-                  Image.network(
-                    "https://images.pexels.com/photos/1546333/pexels-photo-1546333.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-                    fit: BoxFit.cover,
+                  Image.asset(
+                    "assets/hiring.png",
+                    fit: BoxFit.fill,
+                    width: double.infinity,
+                  ),
+                  Image.asset(
+                    "assets/devop.png",
+                    fit: BoxFit.fill,
                     width: double.infinity,
                   ),
                 ],

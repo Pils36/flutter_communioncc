@@ -26,8 +26,8 @@ class LocationScreen extends StatelessWidget {
                             fontFamily: 'Montserrat',
                           ),
                         ),
-                        Image.network(
-                          "https://img.icons8.com/pastel-glyph/64/000000/search--v2.png",
+                        Image.asset(
+                          "assets/search.png",
                           width: 40.0,
                           height: 40.0,
                         )
@@ -42,9 +42,7 @@ class LocationScreen extends StatelessWidget {
               ],
             ),
           ),
-
-        ChurchCentres(),
-
+          ChurchCentres(),
         ],
       ),
     );
