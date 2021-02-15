@@ -292,7 +292,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                           ),
                           socialMedia(
                             "assets/ccc_logo.png",
-                            " Communion Christian C..",
+                            " Communion Christ..",
                             "circled-right.png",
                             "https://www.facebook.com/communioncc",
                           ),
@@ -396,7 +396,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                           ),
                           socialMedia(
                             "assets/ccc_logo.png",
-                            " Communion Christian C..",
+                            " Communion Christ...",
                             "circled-right.png",
                             "https://www.youtube.com/channel/UC65SBFUV1CmwEEe5S4iYp6Q",
                           ),

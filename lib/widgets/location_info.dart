@@ -18,19 +18,17 @@ class _ChurchCentresState extends State<ChurchCentres> {
             children: [
               Wrap(
                 children: [
-                  Container(
-                    width: 100.0,
-                    height: 100.0,
-                    child: Card(
-                      semanticContainer: true,
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Image.asset(
-                        imageVal,
-                        fit: BoxFit.fill,
-                      ),
+                  Card(
+                    semanticContainer: true,
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    child: Image.asset(
+                      imageVal,
+                      fit: BoxFit.fill,
+                      width: 100.0,
+                      height: 100.0,
                     ),
                   ),
                   Container(
@@ -84,8 +82,8 @@ class _ChurchCentresState extends State<ChurchCentres> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          newLocation("assets/presken.JPG", "Lagos Church",
-              "Presken Hotel, Eden Place", "341mi"),
+          newLocation(
+              "assets/presken.JPG", "Lagos Church", "Presken, Eden..", "341mi"),
           Padding(
             padding: const EdgeInsets.only(
               left: 10.0,
@@ -126,7 +124,7 @@ class _ChurchCentresState extends State<ChurchCentres> {
               thickness: 1.0,
             ),
           ),
-          newLocation("assets/moro.jpeg", "Campus Fellowship",
+          newLocation("assets/moro.jpeg", "Campus Fellows..",
               "Moro, Osun State", "1123mi"),
           Padding(
             padding: const EdgeInsets.only(
