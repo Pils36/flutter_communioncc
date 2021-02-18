@@ -18,119 +18,120 @@ class _SermonModalState extends State<SermonModal> {
 
   bool playing = false;
 
-  Image playBtn = Image(
-    image: AssetImage("assets/play_sermon.png"),
-    width: 50,
-    height: 50,
+  Icon playBtn = Icon(
+    Icons.play_arrow,
+    size: 60,
   );
 
   _showModalBottomSheet(context) {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {
-          return Container(
-            height: 450,
-            constraints: BoxConstraints.expand(),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
-              ),
-            ),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 30),
-                    child: Card(
-                      semanticContainer: true,
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Image(
-                        image: NetworkImage(widget.info.imageUrl),
-                        width: 200,
-                        height: 200,
-                        fit: BoxFit.fill,
-                      ),
-                    ),
+          return StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return Container(
+                height: 450,
+                constraints: BoxConstraints.expand(),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 10,
-                      right: 10,
-                    ),
-                    child: Text(
-                      widget.info.subject,
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: "Roboto",
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  Text(
-                    "Pastor Tope Awofisayo",
-                    style: TextStyle(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.w300,
-                      fontFamily: "Roboto",
-                    ),
-                  ),
-                  // Progress bar
-                  slider(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
+                ),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Image.asset(
-                        "assets/replay-back-10.png",
-                        width: 30,
-                        height: 30,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 30),
+                        child: Card(
+                          semanticContainer: true,
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          child: Image(
+                            image: NetworkImage(widget.info.imageUrl),
+                            width: 200,
+                            height: 200,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          getAudio(widget.info.messageUrl);
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 10,
+                          right: 10,
+                          top: 10,
+                        ),
+                        child: Text(
+                          widget.info.subject,
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Roboto",
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      Text(
+                        "Pastor Tope Awofisayo",
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.w300,
+                          fontFamily: "Roboto",
+                        ),
+                      ),
+                      // Progress bar
+                      slider(),
 
-                          if (playing == false) {
-                            if (mounted) {
-                              setState(() {
-                                playBtn = Image(
-                                  image: AssetImage("assets/pause.png"),
-                                  width: 50,
-                                  height: 50,
-                                );
-                              });
-                            }
-                          } else {
-                            setState(() {
-                              playBtn = Image(
-                                image: AssetImage("assets/play_sermon.png"),
-                                width: 50,
-                                height: 50,
-                              );
-                            });
-                          }
-                        },
-                        child: playBtn,
+                      SizedBox(
+                        height: 20,
                       ),
-                      Image.asset(
-                        "assets/replay-forward-10.png",
-                        width: 30,
-                        height: 30,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Icon(
+                            Icons.fast_rewind,
+                            size: 30,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              getAudio(widget.info.messageUrl);
+
+                              if (playing == false) {
+                                if (mounted) {
+                                  setState(() {
+                                    playBtn = Icon(
+                                      Icons.pause,
+                                      size: 60,
+                                    );
+                                  });
+                                }
+                              } else {
+                                setState(() {
+                                  playBtn = Icon(
+                                    Icons.play_arrow,
+                                    size: 60,
+                                  );
+                                });
+                              }
+                            },
+                            child: playBtn,
+                          ),
+                          Icon(
+                            Icons.fast_forward,
+                            size: 30,
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
-            ),
+                ),
+              );
+            },
           );
         });
   }
@@ -169,18 +170,29 @@ class _SermonModalState extends State<SermonModal> {
   }
 
   Widget slider() {
-    return Slider.adaptive(
-      activeColor: Colors.orange.shade600,
-      inactiveColor: Colors.grey.shade300,
-      min: 0.0,
-      value: position.inSeconds.toDouble(),
-      max: duration.inSeconds.toDouble(),
-      onChanged: (double value) {
-        setState(() {
-          audioPlayer.seek(new Duration(seconds: value.toInt()));
-        });
-      },
-    );
+    return StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text((position.inSeconds.toDouble()).toString()),
+          Slider.adaptive(
+            activeColor: Colors.orange.shade600,
+            inactiveColor: Colors.grey.shade300,
+            min: 0.0,
+            value: position.inSeconds.toDouble(),
+            max: duration.inSeconds.toDouble(),
+            onChanged: (double value) {
+              setState(() {
+                audioPlayer.seek(new Duration(seconds: value.toInt()));
+                value = value;
+              });
+            },
+          ),
+          Text((duration.inSeconds.toDouble()).toString()),
+        ],
+      );
+    });
   }
 
   void getAudio(link) async {
@@ -210,16 +222,33 @@ class _SermonModalState extends State<SermonModal> {
       }
     }
 
+    // This is the duration of the file
+
     audioPlayer.onDurationChanged.listen((Duration dd) {
       setState(() {
         duration = dd;
       });
     });
 
+    // On player change
     audioPlayer.onAudioPositionChanged.listen((Duration dd) {
       setState(() {
         position = dd;
       });
+    });
+
+    // On player completion
+    audioPlayer.onPlayerCompletion.listen((event) {
+      onComplete();
+      setState(() {
+        position = duration;
+      });
+    });
+  }
+
+  void onComplete() {
+    setState(() {
+      playing = false;
     });
   }
 }
