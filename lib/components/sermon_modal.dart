@@ -19,6 +19,10 @@ class _SermonModalState extends State<SermonModal> {
 
   AudioCache cache;
 
+  String audioState;
+  String startMin;
+  String stopMin;
+
   bool playing = false;
 
   Icon playBtn = Icon(
@@ -26,14 +30,14 @@ class _SermonModalState extends State<SermonModal> {
     size: 60,
   );
 
-  Container audioSlider(String startMin, String stopMin) {
+  Widget audioSlider(startMin, stopMin) {
     return Container(
       width: 400,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            startMin,
+            startMin != null ? startMin : "0:00:00",
             style: TextStyle(
               fontWeight: FontWeight.w600,
               fontFamily: "Roboto",
@@ -41,7 +45,9 @@ class _SermonModalState extends State<SermonModal> {
           ),
           slider(),
           Text(
-            stopMin,
+            stopMin != null
+                ? duration.toString().split('.').first
+                : duration.toString().split('.').first,
             style: TextStyle(
               fontWeight: FontWeight.w600,
               fontFamily: "Roboto",
@@ -116,8 +122,8 @@ class _SermonModalState extends State<SermonModal> {
                       ),
                       // Progress bar
                       audioSlider(
-                        "${position.inMinutes}:${position.inSeconds.remainder(60)}",
-                        "${duration.inMinutes}:${duration.inSeconds.remainder(60)}",
+                        startMin,
+                        stopMin,
                       ),
 
                       SizedBox(
@@ -132,7 +138,7 @@ class _SermonModalState extends State<SermonModal> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              getAudio(widget.info.messageUrl);
+                              getAudio();
 
                               if (playing == false) {
                                 if (mounted) {
@@ -222,8 +228,8 @@ class _SermonModalState extends State<SermonModal> {
     });
   }
 
-  void getAudio(link) async {
-    var url = link;
+  void getAudio() async {
+    var url = widget.info.messageUrl;
 
     // playing is false by default
     if (playing) {
@@ -254,6 +260,8 @@ class _SermonModalState extends State<SermonModal> {
     audioPlayer.onDurationChanged.listen((Duration dd) {
       setState(() {
         duration = dd;
+        // print("Duration: $duration");
+        stopMin = "${duration.toString().split('.').first}";
       });
     });
 
@@ -261,21 +269,20 @@ class _SermonModalState extends State<SermonModal> {
     audioPlayer.onAudioPositionChanged.listen((Duration dd) {
       setState(() {
         position = dd;
+        // print("Position: $position");
+        startMin = "${position.toString().split('.').first}";
       });
     });
 
     // On player completion
-    audioPlayer.onPlayerCompletion.listen((event) {
-      onComplete();
-      setState(() {
-        position = duration;
-      });
-    });
-  }
+    audioPlayer.onPlayerStateChanged.listen((playerState) {
+      if (playerState == AudioPlayerState.STOPPED) audioState = "Stopped";
+      if (playerState == AudioPlayerState.PLAYING) audioState = "Playing";
+      if (playerState == AudioPlayerState.PAUSED) audioState = "Paused";
 
-  void onComplete() {
-    setState(() {
-      playing = false;
+      setState(() {
+        // print("Audio state: $audioState");
+      });
     });
   }
 
