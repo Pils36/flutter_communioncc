@@ -20,8 +20,21 @@ class _SermonModalState extends State<SermonModal> {
   AudioCache cache;
 
   String audioState;
-  String startMin;
-  String stopMin;
+
+  Widget stopMin = Text(
+    "-:--:--",
+    style: TextStyle(
+      fontWeight: FontWeight.w600,
+      fontFamily: "Roboto",
+    ),
+  );
+  Widget startMin = Text(
+    "-:--:--",
+    style: TextStyle(
+      fontWeight: FontWeight.w600,
+      fontFamily: "Roboto",
+    ),
+  );
 
   bool playing = false;
 
@@ -30,32 +43,12 @@ class _SermonModalState extends State<SermonModal> {
     size: 60,
   );
 
-  Widget audioSlider(startMin, stopMin) {
-    return Container(
-      width: 400,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            startMin != null ? startMin : "0:00:00",
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontFamily: "Roboto",
-            ),
-          ),
-          slider(),
-          Text(
-            stopMin != null
-                ? duration.toString().split('.').first
-                : duration.toString().split('.').first,
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontFamily: "Roboto",
-            ),
-          ),
-        ],
-      ),
-    );
+  @override
+  void initState() {
+    _sermonDuration();
+    _currPosition();
+
+    super.initState();
   }
 
   _showModalBottomSheet(context) {
@@ -121,10 +114,7 @@ class _SermonModalState extends State<SermonModal> {
                         ),
                       ),
                       // Progress bar
-                      audioSlider(
-                        startMin,
-                        stopMin,
-                      ),
+                      slider(),
 
                       SizedBox(
                         height: 20,
@@ -211,31 +201,39 @@ class _SermonModalState extends State<SermonModal> {
   Widget slider() {
     return StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
-      return Slider.adaptive(
-        activeColor: Colors.orange.shade600,
-        inactiveColor: Colors.grey.shade300,
-        min: 0.0,
-        value: position.inSeconds.toDouble(),
-        max: duration.inSeconds.toDouble(),
-        onChanged: (double value) {
-          setState(() {
-            // audioPlayer.seek(new Duration(seconds: value.toInt()));
-            seekSec(value.toInt());
-            value = value;
-          });
-        },
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          startMin,
+          Slider.adaptive(
+            activeColor: Colors.orange.shade600,
+            inactiveColor: Colors.grey.shade300,
+            min: 0.0,
+            value: position.inSeconds.toDouble(),
+            max: duration.inSeconds.toDouble(),
+            onChanged: (double value) {
+              setState(() {
+                // audioPlayer.seek(new Duration(seconds: value.toInt()));
+                seekSec(value.toInt());
+                value = value;
+              });
+            },
+          ),
+          stopMin,
+        ],
       );
     });
   }
 
   void getAudio() async {
     var url = widget.info.messageUrl;
+    var res;
 
     // playing is false by default
     if (playing) {
       // Pause song
 
-      var res = await audioPlayer.pause();
+      res = await audioPlayer.pause();
 
       if (res == 1) {
         setState(() {
@@ -244,7 +242,7 @@ class _SermonModalState extends State<SermonModal> {
       }
     } else {
       // Play song
-      var res = await audioPlayer.play(url, isLocal: false);
+      res = await audioPlayer.play(url, isLocal: false);
 
       if (res == 1) {
         if (mounted) {
@@ -255,34 +253,51 @@ class _SermonModalState extends State<SermonModal> {
       }
     }
 
+    _stopSermon();
+  }
+
+  void _sermonDuration() {
     // This is the duration of the file
 
     audioPlayer.onDurationChanged.listen((Duration dd) {
       setState(() {
         duration = dd;
-        // print("Duration: $duration");
-        stopMin = "${duration.toString().split('.').first}";
+        stopMin = Text(
+          "${duration.toString().split('.').first}",
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontFamily: "Roboto",
+          ),
+        );
       });
     });
+  }
 
+  void _currPosition() {
     // On player change
     audioPlayer.onAudioPositionChanged.listen((Duration dd) {
       setState(() {
         position = dd;
-        // print("Position: $position");
-        startMin = "${position.toString().split('.').first}";
+        startMin = Text(
+          "${position.toString().split('.').first}",
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontFamily: "Roboto",
+          ),
+        );
+        print(startMin);
       });
     });
+  }
 
+  void _stopSermon() {
     // On player completion
     audioPlayer.onPlayerStateChanged.listen((playerState) {
       if (playerState == AudioPlayerState.STOPPED) audioState = "Stopped";
       if (playerState == AudioPlayerState.PLAYING) audioState = "Playing";
       if (playerState == AudioPlayerState.PAUSED) audioState = "Paused";
 
-      setState(() {
-        // print("Audio state: $audioState");
-      });
+      setState(() {});
     });
   }
 
