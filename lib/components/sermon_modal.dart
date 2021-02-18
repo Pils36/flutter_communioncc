@@ -1,3 +1,4 @@
+import 'package:audioplayers/audio_cache.dart';
 import 'package:communioncc/models/messages.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -16,12 +17,40 @@ class _SermonModalState extends State<SermonModal> {
   Duration duration = new Duration();
   Duration position = new Duration();
 
+  AudioCache cache;
+
   bool playing = false;
 
   Icon playBtn = Icon(
     Icons.play_arrow,
     size: 60,
   );
+
+  Container audioSlider(String startMin, String stopMin) {
+    return Container(
+      width: 400,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            startMin,
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontFamily: "Roboto",
+            ),
+          ),
+          slider(),
+          Text(
+            stopMin,
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontFamily: "Roboto",
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
   _showModalBottomSheet(context) {
     showModalBottomSheet(
@@ -65,6 +94,7 @@ class _SermonModalState extends State<SermonModal> {
                           left: 10,
                           right: 10,
                           top: 10,
+                          bottom: 5,
                         ),
                         child: Text(
                           widget.info.subject,
@@ -85,7 +115,10 @@ class _SermonModalState extends State<SermonModal> {
                         ),
                       ),
                       // Progress bar
-                      slider(),
+                      audioSlider(
+                        "${position.inMinutes}:${position.inSeconds.remainder(60)}",
+                        "${duration.inMinutes}:${duration.inSeconds.remainder(60)}",
+                      ),
 
                       SizedBox(
                         height: 20,
@@ -172,25 +205,19 @@ class _SermonModalState extends State<SermonModal> {
   Widget slider() {
     return StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text((position.inSeconds.toDouble()).toString()),
-          Slider.adaptive(
-            activeColor: Colors.orange.shade600,
-            inactiveColor: Colors.grey.shade300,
-            min: 0.0,
-            value: position.inSeconds.toDouble(),
-            max: duration.inSeconds.toDouble(),
-            onChanged: (double value) {
-              setState(() {
-                audioPlayer.seek(new Duration(seconds: value.toInt()));
-                value = value;
-              });
-            },
-          ),
-          Text((duration.inSeconds.toDouble()).toString()),
-        ],
+      return Slider.adaptive(
+        activeColor: Colors.orange.shade600,
+        inactiveColor: Colors.grey.shade300,
+        min: 0.0,
+        value: position.inSeconds.toDouble(),
+        max: duration.inSeconds.toDouble(),
+        onChanged: (double value) {
+          setState(() {
+            // audioPlayer.seek(new Duration(seconds: value.toInt()));
+            seekSec(value.toInt());
+            value = value;
+          });
+        },
       );
     });
   }
@@ -250,5 +277,10 @@ class _SermonModalState extends State<SermonModal> {
     setState(() {
       playing = false;
     });
+  }
+
+  void seekSec(int value) {
+    Duration newPos = Duration(seconds: value);
+    audioPlayer.seek(newPos);
   }
 }
