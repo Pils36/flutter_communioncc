@@ -77,9 +77,9 @@ class _PopularSermonsState extends State<PopularSermons> {
               subtitle: Text(
                 description,
                 style: TextStyle(
-                  fontWeight: FontWeight.w300,
-                  color: Colors.grey[500],
-                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.w500,
+                  color: Colors.grey[800],
+                  fontFamily: 'Roboto',
                 ),
                 overflow: TextOverflow.ellipsis,
               ),

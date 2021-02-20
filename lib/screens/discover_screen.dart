@@ -19,13 +19,16 @@ class _DiscoverScreenState extends State<DiscoverScreen>
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        child: Wrap(
+        child: Stack(
+          fit: StackFit.loose,
+          alignment: AlignmentDirectional.bottomStart,
           children: [
             Image.asset(
               "images/$imageVal",
               fit: BoxFit.fill,
             ),
             ListTile(
+              tileColor: Colors.grey[800],
               contentPadding: EdgeInsets.only(
                 bottom: 10.0,
                 left: 10.0,
@@ -45,8 +48,9 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                 subHeading,
                 style: TextStyle(
                   fontSize: 17.0,
-                  fontWeight: FontWeight.w200,
-                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.w500,
+                  fontFamily: 'Roboto',
+                  color: Colors.white,
                 ),
                 textAlign: TextAlign.left,
               ),

@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen>
   Widget build(BuildContext context) {
     super.build(context);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.black, //or set color with: Color(0xFF0000FF)
+      statusBarColor: mBackgroundColour, //or set color with: Color(0xFF0000FF)
     ));
 
     return DefaultTabController(
