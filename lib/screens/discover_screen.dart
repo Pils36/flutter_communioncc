@@ -27,32 +27,39 @@ class _DiscoverScreenState extends State<DiscoverScreen>
               "images/$imageVal",
               fit: BoxFit.fill,
             ),
-            ListTile(
-              tileColor: Colors.grey[800],
-              contentPadding: EdgeInsets.only(
-                bottom: 10.0,
-                left: 10.0,
-                right: 10.0,
-              ),
-              // minVerticalPadding: 15.0,
-              title: Text(
-                heading,
-                style: TextStyle(
-                  fontSize: 25.0,
-                  fontWeight: FontWeight.w600,
-                  color: mOrangeColour,
-                  fontFamily: 'Montserrat',
+            Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.black54, Colors.grey[800]],
+                  begin: Alignment.topCenter,
                 ),
               ),
-              subtitle: Text(
-                subHeading,
-                style: TextStyle(
-                  fontSize: 17.0,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'Roboto',
-                  color: Colors.white,
+              child: ListTile(
+                contentPadding: EdgeInsets.only(
+                  bottom: 5.0,
+                  left: 7.0,
+                  right: 7.0,
                 ),
-                textAlign: TextAlign.left,
+                // minVerticalPadding: 15.0,
+                title: Text(
+                  heading,
+                  style: TextStyle(
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.deepOrange,
+                    fontFamily: 'Montserrat',
+                  ),
+                ),
+                subtitle: Text(
+                  subHeading,
+                  style: TextStyle(
+                    fontSize: 17.0,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Roboto',
+                    color: Colors.white,
+                  ),
+                  textAlign: TextAlign.left,
+                ),
               ),
             ),
           ],
@@ -160,7 +167,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
               discoverInfo(
                 'newhere.jpg',
                 "New Here?",
-                "\nLearn more about our church and how you can get involved",
+                "Learn more about our church and how you can get involved",
               ),
               Container(
                 margin: EdgeInsets.all(15.0),
@@ -176,7 +183,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
               discoverInfo(
                 'outreach.jpg',
                 "Communion Outreach",
-                "\nCommunion Outreach is about compassion, unity, selflessness, and service. We serve with more than 300 organizations. We belive in connecting with the community abd would be honored if you would join us.",
+                "Communion Outreach is about compassion, unity, selflessness, and service. We serve with more than 300 organizations. We belive in connecting with the community and would be honored if you would join us.",
               ),
               Container(
                 margin: EdgeInsets.all(15.0),
@@ -192,7 +199,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
               discoverInfo(
                 "coreinterest.jpg",
                 "Core Interest Group",
-                "\nLearn more about our core interest group. Career wise, Business oriented and Ministry works.",
+                "Learn more about our core interest group. Career wise, Business oriented and Ministry works.",
               ),
               Container(
                 margin: EdgeInsets.all(15.0),
@@ -208,7 +215,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
               discoverInfo(
                 "familyconnect.jpg",
                 "Family Connect",
-                "\nNo matter where you come from, there is a family connect for you. Join a family connect and experience real relationships that will grow your faith.",
+                "No matter where you come from, there is a family connect for you. Join a family connect and experience real relationships that will grow your faith.",
               ),
               Container(
                 margin: EdgeInsets.all(15.0),
@@ -224,7 +231,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
               discoverInfo(
                 "choir.jpeg",
                 "Communion Choir",
-                "\nOpen your heart and see the evidence of God's presence all around you as you listen to original music written, produced and performed by C4.",
+                "Open your heart and see the evidence of God's presence all around you as you listen to original music written, produced and performed by C4.",
               ),
               Container(
                 margin: EdgeInsets.all(15.0),
@@ -240,7 +247,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
               discoverInfo(
                 "contact.jpg",
                 "Need more info?",
-                "\nDon't see what you are looking for? Have a question? We're hapy to help.",
+                "Don't see what you are looking for? Have a question? We're hapy to help.",
               ),
               Container(
                 margin: EdgeInsets.all(15.0),
@@ -268,13 +275,13 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                 ),
               ),
               Container(
-                color: Colors.grey.shade100,
                 height: 250,
                 padding: EdgeInsets.only(bottom: 20.0, right: 10.0, left: 10.0),
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
                     Card(
+                      color: Colors.grey.shade100,
                       semanticContainer: true,
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       shape: RoundedRectangleBorder(
@@ -304,6 +311,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                       ),
                     ),
                     Card(
+                      color: Colors.grey.shade100,
                       semanticContainer: true,
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       shape: RoundedRectangleBorder(
@@ -333,6 +341,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                       ),
                     ),
                     Card(
+                      color: Colors.grey.shade100,
                       semanticContainer: true,
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       shape: RoundedRectangleBorder(
@@ -362,6 +371,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                       ),
                     ),
                     Card(
+                      color: Colors.grey.shade100,
                       semanticContainer: true,
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       shape: RoundedRectangleBorder(
@@ -385,6 +395,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                       ),
                     ),
                     Card(
+                      color: Colors.grey.shade100,
                       semanticContainer: true,
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       shape: RoundedRectangleBorder(

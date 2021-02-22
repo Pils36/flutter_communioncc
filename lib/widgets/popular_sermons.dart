@@ -84,20 +84,6 @@ class _PopularSermonsState extends State<PopularSermons> {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            Container(
-              padding: EdgeInsets.only(right: 10.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Container(
-                    child: Icon(
-                      Icons.mic,
-                      color: Colors.orange.shade900,
-                    ),
-                  ),
-                ],
-              ),
-            ),
           ],
         ),
       ),
@@ -127,7 +113,7 @@ class _PopularSermonsState extends State<PopularSermons> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20.0),
-      height: 315.0,
+      height: 270.0,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {

@@ -104,6 +104,13 @@ class _BottomNavigationState extends State<BottomNavigation> {
           showUnselectedLabels: true,
           elevation: 0,
           type: BottomNavigationBarType.fixed,
+          selectedLabelStyle: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontFamily: "Roboto",
+          ),
+          unselectedLabelStyle: TextStyle(
+            fontFamily: "Roboto",
+          ),
         ),
       ),
     );
