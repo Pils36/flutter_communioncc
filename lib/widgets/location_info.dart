@@ -11,64 +11,56 @@ class _ChurchCentresState extends State<ChurchCentres> {
     return Container(
       // color: Colors.grey[200],
       padding: EdgeInsets.only(left: 15.0, top: 10.0, right: 15.0),
-      child: Wrap(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          Card(
+            semanticContainer: true,
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: Image.asset(
+              imageVal,
+              fit: BoxFit.fill,
+              width: 100.0,
+              height: 100.0,
+            ),
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w700,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Text(
+                  subtitle,
+                  style: TextStyle(
+                    fontSize: 14.0,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w300,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Wrap(
-                children: [
-                  Card(
-                    semanticContainer: true,
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    child: Image.asset(
-                      imageVal,
-                      fit: BoxFit.fill,
-                      width: 100.0,
-                      height: 100.0,
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 30.0, left: 5.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          title,
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w700,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        Text(
-                          subtitle,
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w300,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(miles),
-                  Icon(
-                    Icons.arrow_forward_ios,
-                    size: 15,
-                  )
-                ],
-              ),
+              Text(miles),
+              Icon(
+                Icons.arrow_forward_ios,
+                size: 15,
+              )
             ],
           ),
         ],
@@ -82,8 +74,8 @@ class _ChurchCentresState extends State<ChurchCentres> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          newLocation(
-              "assets/presken.JPG", "Lagos Church", "Presken, Eden..", "341mi"),
+          newLocation("assets/presken.JPG", "Lagos Church",
+              "Presken, Eden Comfort Place", "341mi"),
           Padding(
             padding: const EdgeInsets.only(
               left: 10.0,
@@ -124,7 +116,7 @@ class _ChurchCentresState extends State<ChurchCentres> {
               thickness: 1.0,
             ),
           ),
-          newLocation("assets/moro.jpeg", "Campus Fellows..",
+          newLocation("assets/moro.jpeg", "Campus Fellowship",
               "Moro, Osun State", "1123mi"),
           Padding(
             padding: const EdgeInsets.only(
