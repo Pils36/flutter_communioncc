@@ -90,57 +90,65 @@ class GivingScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          RaisedButton(
-                            color: Colors.blue[700],
-                            elevation: 0,
-                            onPressed: () {},
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text(
-                                  "Pay with Paystack ",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontFamily: "Roboto",
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                          Expanded(
+                            child: RaisedButton(
+                              color: Colors.blue[700],
+                              elevation: 0,
+                              onPressed: () {},
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text(
+                                    "Paystack Pay",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontFamily: "Roboto",
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
                                   ),
-                                ),
-                                Image.asset(
-                                  "assets/paystack.png",
-                                  width: 20,
-                                  height: 20,
-                                ),
-                              ],
+                                  Image.asset(
+                                    "assets/paystack.png",
+                                    width: 20,
+                                    height: 20,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                          RaisedButton(
-                            color: Colors.red[900],
-                            elevation: 0,
-                            onPressed: () {},
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text(
-                                  "Pay with Gpay ",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontFamily: "Roboto",
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                          Expanded(
+                            child: RaisedButton(
+                              color: Colors.red[900],
+                              elevation: 0,
+                              onPressed: () {},
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text(
+                                    "Google Pay",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontFamily: "Roboto",
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
                                   ),
-                                ),
-                                Image.asset(
-                                  "assets/gpay.png",
-                                  width: 20,
-                                  height: 20,
-                                ),
-                              ],
+                                  Image.asset(
+                                    "assets/gpay.png",
+                                    width: 20,
+                                    height: 20,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],
