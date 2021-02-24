@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:communioncc/clients/api_clients.dart';
 import 'package:communioncc/models/series.dart';
+import 'package:communioncc/screens/series_destination.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
@@ -83,7 +84,13 @@ class _SeriesState extends State<Series> {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              print(_messages[index].id);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => SeriesDestination(
+                          info: _messages[index],
+                        )),
+              );
             },
             child: Hero(
               tag: _messages[index].subject,
