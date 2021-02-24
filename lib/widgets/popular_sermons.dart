@@ -125,13 +125,10 @@ class _PopularSermonsState extends State<PopularSermons> {
                         info: _messages[index],
                       )),
             ),
-            child: Hero(
-              tag: _messages[index].id,
-              child: mostSermon(
-                _messages[index].imageUrl,
-                _messages[index].subject,
-                removeAllHtmlTags(_messages[index].description),
-              ),
+            child: mostSermon(
+              _messages[index].imageUrl,
+              _messages[index].subject,
+              removeAllHtmlTags(_messages[index].description),
             ),
           );
         },
