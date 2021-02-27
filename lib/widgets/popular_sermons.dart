@@ -12,7 +12,7 @@ class PopularSermons extends StatefulWidget {
 }
 
 class _PopularSermonsState extends State<PopularSermons> {
-  List<Messages> _messages = List<Messages>();
+  List<Messages> thismessages = List<Messages>();
 
   Future<List<Messages>> fetchPopularSermon() async {
     var url = "https://communioncc.org/api/v1/message/popularsermons";
@@ -101,7 +101,7 @@ class _PopularSermonsState extends State<PopularSermons> {
     fetchPopularSermon().then((value) {
       if (mounted) {
         setState(() {
-          _messages.addAll(value);
+          thismessages.addAll(value);
         });
       }
     });
@@ -122,17 +122,17 @@ class _PopularSermonsState extends State<PopularSermons> {
               context,
               MaterialPageRoute(
                   builder: (_) => MessageDestination(
-                        info: _messages[index],
+                        info: thismessages[index],
                       )),
             ),
             child: mostSermon(
-              _messages[index].imageUrl,
-              _messages[index].subject,
-              removeAllHtmlTags(_messages[index].description),
+              thismessages[index].imageUrl,
+              thismessages[index].subject,
+              removeAllHtmlTags(thismessages[index].description),
             ),
           );
         },
-        itemCount: _messages.length,
+        itemCount: thismessages.length,
         shrinkWrap: true,
       ),
     );

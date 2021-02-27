@@ -30,20 +30,16 @@ class _MessageDestinationState extends State<MessageDestination> {
 
     DateTime now = DateTime.parse(datetime);
 
-    void _onBackPressed() {
-      Navigator.of(context).pop(true);
-    }
-
     return Scaffold(
       // extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: Text("${widget.info.subject}"),
-        backgroundColor: Colors.black,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: _onBackPressed,
-        ),
-      ),
+      // appBar: AppBar(
+      //   title: Text("${widget.info.subject}"),
+      //   backgroundColor: Colors.black,
+      //   leading: IconButton(
+      //     icon: Icon(Icons.arrow_back_ios),
+      //     onPressed: _onBackPressed,
+      //   ),
+      // ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
@@ -63,21 +59,33 @@ class _MessageDestinationState extends State<MessageDestination> {
                           blurRadius: 6.0,
                         ),
                       ]),
-                  child: Hero(
-                    tag: widget.info.id,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(30.0),
-                        bottomRight: Radius.circular(30.0),
-                      ),
-                      child: FittedBox(
-                        fit: BoxFit.cover,
-                        child: Image(
-                          image: NetworkImage(widget.info.imageUrl),
-                          fit: BoxFit.contain,
-                        ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(30.0),
+                      bottomRight: Radius.circular(30.0),
+                    ),
+                    child: FittedBox(
+                      fit: BoxFit.cover,
+                      child: Image(
+                        image: NetworkImage(widget.info.imageUrl),
+                        fit: BoxFit.contain,
                       ),
                     ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20.0,
+                    vertical: 10.0,
+                  ),
+                  child: Row(
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.arrow_back_ios),
+                        color: Colors.white38,
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                    ],
                   ),
                 ),
               ],

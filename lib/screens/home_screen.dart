@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen>
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Image.asset(
-                        'assets/pp.jpg',
+                        'assets/pp.jpeg',
                         fit: BoxFit.fill,
                       ),
                       elevation: 5,
@@ -114,10 +114,14 @@ class _HomeScreenState extends State<HomeScreen>
 
                   // Popular Sermons
                   Padding(
-                    padding: EdgeInsets.only(left: 15, top: 5),
-                    child: Text(
-                      'Popular Sermons',
-                      style: mTitleStyle,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 15.0,
+                    ),
+                    child: RichText(
+                      text: TextSpan(
+                        text: 'Popular Sermons',
+                        style: mTitleStyle,
+                      ),
                     ),
                   ),
 
@@ -125,10 +129,14 @@ class _HomeScreenState extends State<HomeScreen>
 
                   // Series
                   Padding(
-                    padding: EdgeInsets.only(left: 15, top: 5),
-                    child: Text(
-                      'Series',
-                      style: mTitleStyle,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 15.0,
+                    ),
+                    child: RichText(
+                      text: TextSpan(
+                        text: 'Series',
+                        style: mTitleStyle,
+                      ),
                     ),
                   ),
 
@@ -136,10 +144,14 @@ class _HomeScreenState extends State<HomeScreen>
 
                   // Recent Sermons
                   Padding(
-                    padding: EdgeInsets.only(left: 15, top: 5, bottom: 10.0),
-                    child: Text(
-                      'Recent Sermons',
-                      style: mTitleStyle,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 15.0,
+                    ),
+                    child: RichText(
+                      text: TextSpan(
+                        text: 'Recent Sermons',
+                        style: mTitleStyle,
+                      ),
                     ),
                   ),
 

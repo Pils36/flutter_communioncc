@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:communioncc/clients/api_clients.dart';
-import 'package:communioncc/models/series.dart';
+import 'package:communioncc/models/messages.dart';
+// import 'package:communioncc/models/series.dart';
 import 'package:communioncc/screens/series_destination.dart';
 import 'package:flutter/material.dart';
 
@@ -14,22 +15,22 @@ class Series extends StatefulWidget {
 
 class _SeriesState extends State<Series> {
 // Get series message here and populate
-  List<Serie> _messages = List<Serie>();
+  List<Messages> thismessages = List<Messages>();
 
-  Future<List<Serie>> seriesSermon() async {
+  Future<List<Messages>> seriesSermon() async {
     var url = "https://communioncc.org/api/v1/message/series";
 
     ApiClients();
 
     var response = await http.get(url, headers: ApiClients().headers);
 
-    var messages = List<Serie>();
+    var messages = List<Messages>();
 
     if (response.statusCode == 200) {
       var messagesJson = json.decode(response.body)['data'];
 
       for (var messageJson in messagesJson) {
-        messages.add(Serie.fromJson(messageJson));
+        messages.add(Messages.fromJson(messageJson));
       }
     }
     return messages;
@@ -66,7 +67,7 @@ class _SeriesState extends State<Series> {
     seriesSermon().then((value) {
       if (mounted) {
         setState(() {
-          _messages.addAll(value);
+          thismessages.addAll(value);
         });
       }
     });
@@ -88,19 +89,19 @@ class _SeriesState extends State<Series> {
                 context,
                 MaterialPageRoute(
                     builder: (_) => SeriesDestination(
-                          info: _messages[index],
+                          info: thismessages[index],
                         )),
               );
             },
             child: Hero(
-              tag: _messages[index].subject,
+              tag: thismessages[index].subject,
               child: mostSermon(
-                _messages[index].imageUrl,
+                thismessages[index].imageUrl,
               ),
             ),
           );
         },
-        itemCount: _messages.length,
+        itemCount: thismessages.length,
         shrinkWrap: true,
       ),
     );

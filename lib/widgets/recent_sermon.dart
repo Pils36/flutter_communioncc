@@ -14,7 +14,7 @@ class RecentSermons extends StatefulWidget {
 }
 
 class _RecentSermonsState extends State<RecentSermons> {
-  List<Messages> _messages = List<Messages>();
+  List<Messages> thismessages = List<Messages>();
 
   Future<List<Messages>> recentSermons() async {
     var url = "https://communioncc.org/api/v1/message/recentsermons";
@@ -35,7 +35,7 @@ class _RecentSermonsState extends State<RecentSermons> {
     return messages;
   }
 
-  Container newSermons(String imageVal, String title, String preacher) {
+  Widget newSermons(String imageVal, String title, String preacher) {
     return Container(
       padding: EdgeInsets.only(left: 10.0),
       child: Row(
@@ -102,7 +102,7 @@ class _RecentSermonsState extends State<RecentSermons> {
     recentSermons().then((value) {
       if (mounted) {
         setState(() {
-          _messages.addAll(value);
+          thismessages.addAll(value);
         });
       }
     });
@@ -113,7 +113,7 @@ class _RecentSermonsState extends State<RecentSermons> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 400,
+      height: 450,
       child: ListView.builder(
         itemBuilder: (context, index) {
           return GestureDetector(
@@ -121,7 +121,7 @@ class _RecentSermonsState extends State<RecentSermons> {
               context,
               MaterialPageRoute(
                   builder: (_) => MessageDestination(
-                        info: _messages[index],
+                        info: thismessages[index],
                       )),
             ),
             child: Container(
@@ -129,9 +129,9 @@ class _RecentSermonsState extends State<RecentSermons> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   newSermons(
-                    _messages[index].imageUrl,
-                    _messages[index].subject,
-                    "Pst. Tope Awofisayo",
+                    thismessages[index].imageUrl,
+                    thismessages[index].subject,
+                    "Pastor Tope Awofisayo",
                   ),
                   Divider(
                     color: Colors.grey[400],
@@ -143,7 +143,7 @@ class _RecentSermonsState extends State<RecentSermons> {
             ),
           );
         },
-        itemCount: _messages.length,
+        itemCount: thismessages.length,
         shrinkWrap: true,
       ),
     );

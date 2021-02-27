@@ -1,13 +1,15 @@
 import 'package:communioncc/clients/api_clients.dart';
 import 'package:communioncc/constants/color_constant.dart';
-import 'package:communioncc/models/series.dart';
+import 'package:communioncc/models/messages.dart';
+// import 'package:communioncc/models/series.dart';
+import 'package:communioncc/screens/message_destination.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class SeriesDestination extends StatefulWidget {
-  final Serie info;
+  final Messages info;
 
   SeriesDestination({Key key, this.info}) : super(key: key);
 
@@ -16,9 +18,9 @@ class SeriesDestination extends StatefulWidget {
 }
 
 class _SeriesDestinationState extends State<SeriesDestination> {
-  List<Serie> _messages = List<Serie>();
+  List<Messages> thismessages = List<Messages>();
 
-  Future<List<Serie>> seriesSermons() async {
+  Future<List<Messages>> seriesSermons() async {
     var url =
         "https://communioncc.org/api/v1/message/series/${widget.info.subject}";
 
@@ -26,13 +28,13 @@ class _SeriesDestinationState extends State<SeriesDestination> {
 
     var response = await http.get(url, headers: ApiClients().headers);
 
-    var messages = List<Serie>();
+    var messages = List<Messages>();
 
     if (response.statusCode == 200) {
       var messagesJson = json.decode(response.body)['data'];
 
       for (var messageJson in messagesJson) {
-        messages.add(Serie.fromJson(messageJson));
+        messages.add(Messages.fromJson(messageJson));
       }
     }
     return messages;
@@ -43,7 +45,7 @@ class _SeriesDestinationState extends State<SeriesDestination> {
     seriesSermons().then((value) {
       if (mounted) {
         setState(() {
-          _messages.addAll(value);
+          thismessages.addAll(value);
         });
       }
     });
@@ -56,31 +58,50 @@ class _SeriesDestinationState extends State<SeriesDestination> {
     return Scaffold(
       body: Column(
         children: [
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30.0),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    offset: Offset(0.0, 2.0),
-                    blurRadius: 6.0,
+          Stack(
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        offset: Offset(0.0, 2.0),
+                        blurRadius: 6.0,
+                      ),
+                    ]),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20.0),
+                    bottomRight: Radius.circular(20.0),
                   ),
-                ]),
-            child: ClipRRect(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(30.0),
-                bottomRight: Radius.circular(30.0),
-              ),
-              child: FittedBox(
-                fit: BoxFit.cover,
-                child: Image(
-                  image: NetworkImage(widget.info.imageUrl),
-                  fit: BoxFit.contain,
+                  child: FittedBox(
+                    fit: BoxFit.cover,
+                    child: Image(
+                      image: NetworkImage(widget.info.imageUrl),
+                      fit: BoxFit.contain,
+                    ),
+                  ),
                 ),
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20.0,
+                  vertical: 10.0,
+                ),
+                child: Row(
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.arrow_back_ios),
+                      color: Colors.white38,
+                      onPressed: () => Navigator.pop(context),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
           SizedBox(
             height: 5,
@@ -90,7 +111,13 @@ class _SeriesDestinationState extends State<SeriesDestination> {
             child: ListView.builder(
               itemBuilder: (context, index) {
                 return GestureDetector(
-                  onTap: () => print(_messages[index].subject),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => MessageDestination(
+                              info: thismessages[index],
+                            )),
+                  ),
                   child: Row(
                     children: [
                       Container(
@@ -108,7 +135,7 @@ class _SeriesDestinationState extends State<SeriesDestination> {
                                 (BuildContext context, AsyncSnapshot snapshot) {
                               if (snapshot.hasData) {
                                 return Image.network(
-                                  _messages[index].imageUrl,
+                                  thismessages[index].imageUrl,
                                   fit: BoxFit.fill,
                                 );
                               }
@@ -124,7 +151,7 @@ class _SeriesDestinationState extends State<SeriesDestination> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              _messages[index].subject,
+                              thismessages[index].subject,
                               style: TextStyle(
                                 fontSize: 16.0,
                                 fontFamily: 'Montserrat',
@@ -149,7 +176,7 @@ class _SeriesDestinationState extends State<SeriesDestination> {
                   ),
                 );
               },
-              itemCount: _messages.length,
+              itemCount: thismessages.length,
               shrinkWrap: true,
             ),
           ),
