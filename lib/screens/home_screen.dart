@@ -1,10 +1,11 @@
 import 'package:communioncc/constants/color_constant.dart';
 import 'package:communioncc/constants/style_constant.dart';
+import 'package:communioncc/widgets/broadcast.dart';
 import 'package:communioncc/widgets/popular_sermons.dart';
 import 'package:communioncc/widgets/recent_sermon.dart';
 import 'package:communioncc/widgets/series.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -16,9 +17,6 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: mBackgroundColour, //or set color with: Color(0xFF0000FF)
-    ));
 
     return DefaultTabController(
       length: 2,
@@ -67,27 +65,33 @@ class _HomeScreenState extends State<HomeScreen>
                 physics: ClampingScrollPhysics(),
                 children: [
                   // Start Search Field
-                  Container(
-                    margin: EdgeInsets.only(left: 10.0, right: 10.0),
-                    padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                    child: TextField(
-                      style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontSize: 17.0,
-                      ),
-                      decoration: InputDecoration(
-                        enabledBorder: InputBorder.none,
-                        focusedBorder: InputBorder.none,
-                        icon: Icon(
-                          Icons.search,
-                          color: mGreyColour,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 15.0, vertical: 3.0),
+                    child: Container(
+                      color: Colors.grey.shade200,
+                      child: TextField(
+                        // Take to search panel
+                        onTap: () => print(1),
+                        style: TextStyle(
+                          fontFamily: 'Roboto',
+                          fontSize: 18.0,
                         ),
-                        hintText: 'Search',
+                        decoration: InputDecoration(
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          icon: Icon(
+                            Icons.search,
+                            color: mGreyColour,
+                          ),
+                          hintText: 'Search',
+                          hintStyle: TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: "Roboto",
+                          ),
+                        ),
                       ),
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
-                      color: Colors.grey[200],
                     ),
                   ),
 
@@ -189,11 +193,7 @@ class _HomeScreenState extends State<HomeScreen>
                 ],
               ),
             ),
-            Container(
-              child: Center(
-                child: Text("Broadcast Page"),
-              ),
-            ),
+            Broadcast(),
           ],
         ),
       ),
@@ -201,6 +201,5 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   @override
-  // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
 }

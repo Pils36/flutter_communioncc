@@ -1,6 +1,7 @@
 import 'package:communioncc/components/sermon_modal.dart';
 import 'package:communioncc/components/share_button.dart';
 import 'package:communioncc/components/subscribe_redirect.dart';
+import 'package:communioncc/htmlparam/remove_all_tags.dart';
 import 'package:communioncc/models/messages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,12 +17,6 @@ class MessageDestination extends StatefulWidget {
 }
 
 class _MessageDestinationState extends State<MessageDestination> {
-  String removeAllHtmlTags(String htmlText) {
-    RegExp exp = RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
-
-    return htmlText.replaceAll(exp, '');
-  }
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
@@ -112,7 +107,7 @@ class _MessageDestinationState extends State<MessageDestination> {
                     height: 5.0,
                   ),
                   Text(
-                    removeAllHtmlTags(widget.info.description)
+                    RemoveAllTags.removeAllHtmlTags(widget.info.description)
                         .replaceAll('&nbsp;', ' '),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,

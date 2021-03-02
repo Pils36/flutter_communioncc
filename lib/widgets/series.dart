@@ -1,12 +1,8 @@
-import 'dart:convert';
-
 import 'package:communioncc/clients/api_clients.dart';
 import 'package:communioncc/models/messages.dart';
-// import 'package:communioncc/models/series.dart';
 import 'package:communioncc/screens/series_destination.dart';
+import 'package:communioncc/services/remote_services.dart';
 import 'package:flutter/material.dart';
-
-import 'package:http/http.dart' as http;
 
 class Series extends StatefulWidget {
   @override
@@ -18,22 +14,11 @@ class _SeriesState extends State<Series> {
   List<Messages> thismessages = List<Messages>();
 
   Future<List<Messages>> seriesSermon() async {
-    var url = "https://communioncc.org/api/v1/message/series";
+    var url = "${ApiClients().baseUrl}/message/series";
 
-    ApiClients();
+    var thismessages = RemoteServices.fetchSermons(url);
 
-    var response = await http.get(url, headers: ApiClients().headers);
-
-    var messages = List<Messages>();
-
-    if (response.statusCode == 200) {
-      var messagesJson = json.decode(response.body)['data'];
-
-      for (var messageJson in messagesJson) {
-        messages.add(Messages.fromJson(messageJson));
-      }
-    }
-    return messages;
+    return thismessages;
   }
 
   Container mostSermon(String imageVal) {

@@ -116,3 +116,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
     );
   }
 }
+
+/// Get.to()
+/// Get.Named()
