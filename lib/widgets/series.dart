@@ -1,27 +1,12 @@
-import 'package:communioncc/clients/api_clients.dart';
-import 'package:communioncc/models/messages.dart';
+import 'package:communioncc/controllers/seriescontroller.dart';
 import 'package:communioncc/screens/series_destination.dart';
-import 'package:communioncc/services/remote_services.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class Series extends StatefulWidget {
-  @override
-  _SeriesState createState() => _SeriesState();
-}
+class Series extends StatelessWidget {
+  final SeriesController seriesController = Get.put(SeriesController());
 
-class _SeriesState extends State<Series> {
-// Get series message here and populate
-  List<Messages> thismessages = List<Messages>();
-
-  Future<List<Messages>> seriesSermon() async {
-    var url = "${ApiClients().baseUrl}/message/series";
-
-    var thismessages = RemoteServices.fetchSermons(url);
-
-    return thismessages;
-  }
-
-  Container mostSermon(String imageVal) {
+  Widget mostSermon(String imageVal) {
     return Container(
       width: 250.0,
       padding: EdgeInsets.only(left: 10.0),
@@ -31,33 +16,18 @@ class _SeriesState extends State<Series> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        child: FutureBuilder(
-          future: seriesSermon(),
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
-            if (snapshot.hasData) {
-              return Image.network(
-                imageVal,
-                fit: BoxFit.fill,
-              );
-            }
+        child: Obx(() {
+          if (seriesController.isLoading.value == true) {
             return Center(child: CircularProgressIndicator());
-          },
-        ),
+          } else {
+            return Image.network(
+              imageVal,
+              fit: BoxFit.fill,
+            );
+          }
+        }),
       ),
     );
-  }
-
-  @override
-  void initState() {
-    seriesSermon().then((value) {
-      if (mounted) {
-        setState(() {
-          thismessages.addAll(value);
-        });
-      }
-    });
-
-    super.initState();
   }
 
   @override
@@ -65,29 +35,31 @@ class _SeriesState extends State<Series> {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20.0),
       height: 200.0,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => SeriesDestination(
-                          info: thismessages[index],
-                        )),
-              );
-            },
-            child: Hero(
-              tag: thismessages[index].subject,
-              child: mostSermon(
-                thismessages[index].imageUrl,
+      child: Obx(
+        () => ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => SeriesDestination(
+                            info: seriesController.messages[index],
+                          )),
+                );
+              },
+              child: Hero(
+                tag: seriesController.messages[index].subject,
+                child: mostSermon(
+                  seriesController.messages[index].imageUrl,
+                ),
               ),
-            ),
-          );
-        },
-        itemCount: thismessages.length,
-        shrinkWrap: true,
+            );
+          },
+          itemCount: seriesController.messages.length,
+          shrinkWrap: true,
+        ),
       ),
     );
   }

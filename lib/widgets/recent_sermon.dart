@@ -1,25 +1,12 @@
-import 'package:communioncc/clients/api_clients.dart';
 import 'package:communioncc/constants/color_constant.dart';
-import 'package:communioncc/models/messages.dart';
+import 'package:communioncc/controllers/recentsermoncontroller.dart';
 import 'package:communioncc/screens/message_destination.dart';
-import 'package:communioncc/services/remote_services.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class RecentSermons extends StatefulWidget {
-  @override
-  _RecentSermonsState createState() => _RecentSermonsState();
-}
-
-class _RecentSermonsState extends State<RecentSermons> {
-  List<Messages> thismessages = List<Messages>();
-
-  Future<List<Messages>> recentSermons() async {
-    var url = "${ApiClients().baseUrl}/message/recentsermons";
-
-    var thismessages = RemoteServices.fetchSermons(url);
-
-    return thismessages;
-  }
+class RecentSermons extends StatelessWidget {
+  final RecentSermonController recentSermonController =
+      Get.put(RecentSermonController());
 
   Widget newSermons(String imageVal, String title, String preacher) {
     return Container(
@@ -35,20 +22,18 @@ class _RecentSermonsState extends State<RecentSermons> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
               ),
-              child: FutureBuilder(
-                future: recentSermons(),
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  if (snapshot.hasData) {
-                    return Image.network(
-                      imageVal,
-                      fit: BoxFit.fill,
-                    );
-                  }
+              child: Obx(() {
+                if (recentSermonController.isLoading.value == true) {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
-                },
-              ),
+                } else {
+                  return Image.network(
+                    imageVal,
+                    fit: BoxFit.fill,
+                  );
+                }
+              }),
             ),
           ),
           Expanded(
@@ -84,19 +69,6 @@ class _RecentSermonsState extends State<RecentSermons> {
   }
 
   @override
-  void initState() {
-    recentSermons().then((value) {
-      if (mounted) {
-        setState(() {
-          thismessages.addAll(value);
-        });
-      }
-    });
-
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container(
       height: 450,
@@ -107,7 +79,7 @@ class _RecentSermonsState extends State<RecentSermons> {
               context,
               MaterialPageRoute(
                   builder: (_) => MessageDestination(
-                        info: thismessages[index],
+                        info: recentSermonController.messages[index],
                       )),
             ),
             child: Container(
@@ -115,8 +87,8 @@ class _RecentSermonsState extends State<RecentSermons> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   newSermons(
-                    thismessages[index].imageUrl,
-                    thismessages[index].subject,
+                    recentSermonController.messages[index].imageUrl,
+                    recentSermonController.messages[index].subject,
                     "Pastor Tope Awofisayo",
                   ),
                   Divider(
@@ -129,7 +101,7 @@ class _RecentSermonsState extends State<RecentSermons> {
             ),
           );
         },
-        itemCount: thismessages.length,
+        itemCount: recentSermonController.messages.length,
         shrinkWrap: true,
       ),
     );
