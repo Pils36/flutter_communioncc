@@ -1,10 +1,13 @@
 import 'package:communioncc/constants/color_constant.dart';
-import 'package:communioncc/constants/style_constant.dart';
+import 'package:communioncc/controllers/sermoncontroller.dart';
+import 'package:communioncc/screens/message_destination.dart';
+import 'package:communioncc/screens/moresermon.dart';
 import 'package:communioncc/widgets/broadcast.dart';
 import 'package:communioncc/widgets/popular_sermons.dart';
 import 'package:communioncc/widgets/recent_sermon.dart';
 import 'package:communioncc/widgets/series.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 // import 'package:flutter/services.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -33,7 +36,13 @@ class _HomeScreenState extends State<HomeScreen>
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Sermons"),
+                    Text(
+                      "Sermons",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontFamily: "Roboto",
+                      ),
+                    ),
                     Icon(
                       Icons.mic,
                       size: 20.0,
@@ -45,7 +54,13 @@ class _HomeScreenState extends State<HomeScreen>
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Broadcast"),
+                    Text(
+                      "Broadcast",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontFamily: "Roboto",
+                      ),
+                    ),
                     Icon(
                       Icons.videocam,
                       size: 20.0,
@@ -70,27 +85,31 @@ class _HomeScreenState extends State<HomeScreen>
                         horizontal: 15.0, vertical: 3.0),
                     child: Container(
                       color: Colors.grey.shade200,
-                      child: TextField(
-                        // Take to search panel
-                        onTap: () => print(1),
-                        style: TextStyle(
-                          fontFamily: 'Roboto',
-                          fontSize: 18.0,
+                      child: FlatButton(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.search_rounded,
+                              color: mGreyColour,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 5),
+                              child: Text(
+                                'Search...',
+                                style: TextStyle(
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.w100,
+                                    fontFamily: "Roboto",
+                                    color: Colors.grey.shade600),
+                              ),
+                            ),
+                          ],
                         ),
-                        decoration: InputDecoration(
-                          enabledBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          icon: Icon(
-                            Icons.search,
-                            color: mGreyColour,
-                          ),
-                          hintText: 'Search',
-                          hintStyle: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: "Roboto",
-                          ),
-                        ),
+                        onPressed: () => showSearch(
+                            context: context, delegate: DataSearch()),
                       ),
                     ),
                   ),
@@ -123,8 +142,12 @@ class _HomeScreenState extends State<HomeScreen>
                     ),
                     child: RichText(
                       text: TextSpan(
-                        text: 'Popular Sermons',
-                        style: mTitleStyle,
+                        text: 'Suggested For You',
+                        style: TextStyle(
+                            fontFamily: "Roboto",
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -139,7 +162,11 @@ class _HomeScreenState extends State<HomeScreen>
                     child: RichText(
                       text: TextSpan(
                         text: 'Series',
-                        style: mTitleStyle,
+                        style: TextStyle(
+                            fontFamily: "Roboto",
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -154,9 +181,16 @@ class _HomeScreenState extends State<HomeScreen>
                     child: RichText(
                       text: TextSpan(
                         text: 'Recent Sermons',
-                        style: mTitleStyle,
+                        style: TextStyle(
+                            fontFamily: "Roboto",
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
+                  ),
+                  SizedBox(
+                    height: 10,
                   ),
 
                   RecentSermons(),
@@ -166,26 +200,31 @@ class _HomeScreenState extends State<HomeScreen>
                   ),
 
                   Container(
-                    padding: EdgeInsets.all(10),
-                    margin:
-                        EdgeInsets.only(left: 30.0, right: 40.0, bottom: 30.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
-                      color: Colors.grey[200],
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 20,
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "VIEW MORE SERMONS",
-                          style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14.0,
-                            letterSpacing: 2.0,
+                    child: FlatButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => MoreSermon()),
+                        );
+                      },
+                      color: Colors.grey.shade200,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "VIEW MORE SERMONS",
+                            style: TextStyle(
+                              fontFamily: "Roboto",
+                              fontWeight: FontWeight.w700,
+                              fontSize: 18,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
 
@@ -202,4 +241,93 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   bool get wantKeepAlive => true;
+}
+
+class DataSearch extends SearchDelegate<String> {
+// Call API
+  final SermonController sermonController = Get.put(SermonController());
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    // TODO: action for app bar
+    return [
+      IconButton(
+          icon: Icon(Icons.clear),
+          onPressed: () {
+            query = "";
+          })
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    // TODO: leading icon on the left of the app bar
+    return IconButton(
+        icon: AnimatedIcon(
+            icon: AnimatedIcons.menu_arrow, progress: transitionAnimation),
+        onPressed: () {
+          close(context, null);
+        });
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    // TODO: show some result based on the selection
+    throw UnimplementedError();
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    // TODO: show when someone searches for something
+
+    final suggestionList = sermonController.messages
+        .where((p) => p.subject.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.only(top: 10, bottom: 3),
+          child: ListTile(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (_) => MessageDestination(
+                        info: suggestionList[index],
+                      )),
+            ),
+            leading: Card(
+              semanticContainer: true,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+              child: Image.network(
+                suggestionList[index].imageUrl,
+                width: 50,
+                height: 50,
+              ),
+            ),
+            title: RichText(
+              text: TextSpan(
+                  text:
+                      suggestionList[index].subject.substring(0, query.length),
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  children: [
+                    TextSpan(
+                      text:
+                          suggestionList[index].subject.substring(query.length),
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ]),
+            ),
+          ),
+        );
+      },
+      itemCount: suggestionList.length,
+    );
+  }
 }

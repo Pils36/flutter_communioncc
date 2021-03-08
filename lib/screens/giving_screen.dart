@@ -1,3 +1,4 @@
+import 'package:communioncc/screens/paystack_screen.dart';
 import 'package:flutter/material.dart';
 
 class GivingScreen extends StatelessWidget {
@@ -86,7 +87,8 @@ class GivingScreen extends StatelessWidget {
                       });
                 },
                 child: Padding(
-                  padding: const EdgeInsets.all(7.0),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 7, horizontal: 10),
                   child: Column(
                     children: [
                       Row(
@@ -94,63 +96,73 @@ class GivingScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Expanded(
-                            child: RaisedButton(
-                              color: Colors.blue[700],
-                              elevation: 0,
-                              onPressed: () {},
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text(
-                                    "Paystack Pay",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontFamily: "Roboto",
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: RaisedButton(
+                                color: Colors.blue[700],
+                                elevation: 0,
+                                onPressed: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => PaystackPage()),
+                                ),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "Paystack Pay",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontFamily: "Roboto",
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
                                     ),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  Image.asset(
-                                    "assets/paystack.png",
-                                    width: 20,
-                                    height: 20,
-                                  ),
-                                ],
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Image.asset(
+                                      "assets/paystack.png",
+                                      width: 20,
+                                      height: 20,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                          Expanded(
-                            child: RaisedButton(
-                              color: Colors.red[900],
-                              elevation: 0,
-                              onPressed: () {},
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text(
-                                    "Google Pay",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontFamily: "Roboto",
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  Image.asset(
-                                    "assets/gpay.png",
-                                    width: 20,
-                                    height: 20,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
+                          // Expanded(
+                          //   child: RaisedButton(
+                          //     color: Colors.red[900],
+                          //     elevation: 0,
+                          //     onPressed: () {},
+                          //     child: Row(
+                          //       crossAxisAlignment: CrossAxisAlignment.center,
+                          //       mainAxisAlignment:
+                          //           MainAxisAlignment.spaceAround,
+                          //       children: [
+                          //         Text(
+                          //           "Google Pay",
+                          //           style: TextStyle(
+                          //             fontSize: 18,
+                          //             fontFamily: "Roboto",
+                          //             fontWeight: FontWeight.bold,
+                          //             color: Colors.white,
+                          //           ),
+                          //           overflow: TextOverflow.ellipsis,
+                          //         ),
+                          //         Image.asset(
+                          //           "assets/gpay.png",
+                          //           width: 20,
+                          //           height: 20,
+                          //         ),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                       Image.asset(
