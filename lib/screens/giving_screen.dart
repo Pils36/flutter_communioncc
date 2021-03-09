@@ -98,9 +98,9 @@ class GivingScreen extends StatelessWidget {
                           Expanded(
                             child: Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
+                                  const EdgeInsets.symmetric(horizontal: 5),
                               child: RaisedButton(
-                                color: Colors.blue[700],
+                                color: Colors.blueGrey[900],
                                 elevation: 0,
                                 onPressed: () => Navigator.push(
                                   context,

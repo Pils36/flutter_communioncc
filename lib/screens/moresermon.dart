@@ -1,13 +1,13 @@
 // import 'package:communioncc/constants/color_constant.dart';
 import 'package:communioncc/constants/color_constant.dart';
-import 'package:communioncc/controllers/recentsermoncontroller.dart';
+import 'package:communioncc/controllers/allsermoncontroller.dart';
 import 'package:communioncc/screens/message_destination.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MoreSermon extends StatelessWidget {
-  final RecentSermonController recentSermonController =
-      Get.put(RecentSermonController());
+  final AllSermonController recentSermonController =
+      Get.put(AllSermonController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
