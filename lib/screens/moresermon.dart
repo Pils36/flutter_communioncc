@@ -13,44 +13,44 @@ class MoreSermon extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text(
-          "Over ${recentSermonController.messages.length} messages available",
-          style: TextStyle(
-            fontFamily: "ROboto",
-          ),
-        ),
-      ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (_) => MessageDestination(
-                        info: recentSermonController.messages[index],
-                      )),
-            ),
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  newSermons(
-                    recentSermonController.messages[index].imageUrl,
-                    recentSermonController.messages[index].subject,
-                    "Pastor Tope Awofisayo",
-                  ),
-                  Divider(
-                    color: Colors.grey[200],
-                    height: 1.0,
-                    thickness: 1.0,
-                  ),
-                ],
+        title: Obx(() => Text(
+              "Over ${recentSermonController.messages.length} messages available",
+              style: TextStyle(
+                fontFamily: "ROboto",
               ),
-            ),
-          );
-        },
-        itemCount: recentSermonController.messages.length,
+            )),
       ),
+      body: Obx(() => ListView.builder(
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => MessageDestination(
+                            info: recentSermonController.messages[index],
+                          )),
+                ),
+                child: Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      newSermons(
+                        recentSermonController.messages[index].imageUrl,
+                        recentSermonController.messages[index].subject,
+                        "Pastor Tope Awofisayo",
+                      ),
+                      Divider(
+                        color: Colors.grey[200],
+                        height: 1.0,
+                        thickness: 1.0,
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+            itemCount: recentSermonController.messages.length,
+          )),
     );
   }
 

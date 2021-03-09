@@ -1,3 +1,4 @@
+import 'package:communioncc/constants/color_constant.dart';
 import 'package:communioncc/widgets/bottom_navigation.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: "Montserrat",
         scaffoldBackgroundColor: Colors.white,
+        primaryColor: mOrangeColour,
       ),
       // darkTheme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,

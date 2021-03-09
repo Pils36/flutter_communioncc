@@ -1,4 +1,3 @@
-import 'package:communioncc/constants/color_constant.dart';
 import 'package:flutter/material.dart';
 
 class PaystackPage extends StatefulWidget {
@@ -11,9 +10,16 @@ class _PaystackPageState extends State<PaystackPage> {
 
   String _email;
 
+  int _amount;
+
   String _purpose;
 
-  int _amount;
+  List purposeItem = [
+    "Offering",
+    "Tithe",
+    "Seed of Faith",
+    "Kingdom Partnership",
+  ];
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -68,10 +74,30 @@ class _PaystackPageState extends State<PaystackPage> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 20.0),
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: "Purpose of Giving",
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey, width: 1),
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: DropdownButton(
+                          hint: Text("Purpose of Giving"),
+                          icon: Icon(Icons.arrow_drop_down),
+                          iconSize: 30,
+                          isExpanded: true,
+                          value: _purpose,
+                          onChanged: (value) {
+                            setState(() {
+                              _purpose = value;
+                            });
+                          },
+                          items: purposeItem.map((valueItem) {
+                            return DropdownMenuItem(
+                              value: valueItem,
+                              child: Text(valueItem),
+                            );
+                          }).toList(),
                         ),
                       ),
                     ),
