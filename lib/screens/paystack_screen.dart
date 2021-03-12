@@ -33,6 +33,7 @@ class _PaystackPageState extends State<PaystackPage> {
         padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 60.0),
         child: SingleChildScrollView(
           child: GestureDetector(
+            onTap: () => FocusScope.of(context).unfocus(),
             child: Column(
               children: [
                 Row(
