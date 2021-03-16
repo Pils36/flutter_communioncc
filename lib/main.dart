@@ -1,5 +1,6 @@
 import 'package:communioncc/constants/color_constant.dart';
 import 'package:communioncc/widgets/bottom_navigation.dart';
+import 'package:communioncc/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {

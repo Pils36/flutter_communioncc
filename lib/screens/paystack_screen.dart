@@ -72,6 +72,7 @@ class _PaystackPageState extends State<PaystackPage> {
                             border: OutlineInputBorder(),
                             labelText: "Amount",
                           ),
+                          keyboardType: TextInputType.number,
                         ),
                       ),
                       Padding(
@@ -88,6 +89,7 @@ class _PaystackPageState extends State<PaystackPage> {
                             icon: Icon(Icons.arrow_drop_down),
                             iconSize: 30,
                             isExpanded: true,
+                            elevation: 0,
                             value: _purpose,
                             onChanged: (value) {
                               setState(() {
